@@ -22,6 +22,7 @@
 <jsp:include page="intranetCabecera.jsp" />
 <div class="container" style="margin-top: 4%">
 <h4>Registra Libro</h4>
+<h6>Autor: Diego Villafuerte Villalobos</h6>
 
 	
 </div>
