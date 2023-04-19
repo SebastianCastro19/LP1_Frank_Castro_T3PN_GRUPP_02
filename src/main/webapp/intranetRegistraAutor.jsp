@@ -22,7 +22,7 @@
 <jsp:include page="intranetCabecera.jsp" />
 <div class="container" style="margin-top: 4%">
 <h4>Registra Autor</h4>
-<h6>Nombre: Sebastian Castro</h6>
+<h6>Nombre: Sebastian Castroo</h6>
 	
 </div>
 </body>
