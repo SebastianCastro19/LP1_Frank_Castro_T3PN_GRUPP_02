@@ -22,7 +22,7 @@
 <jsp:include page="intranetCabecera.jsp" />
 <div class="container" style="margin-top: 4%">
 <h4>Registra Alumno</h4>
-
+<h6>Juanito</h6>
 	
 </div>
 </body>
