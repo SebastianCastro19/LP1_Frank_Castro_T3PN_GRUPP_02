@@ -42,6 +42,9 @@
 				<input class="form-control" type="text" id="id_dni" name="dni" placeholder="Ingrese el dni" maxlength="8">
 			</div>
 			
+			
+			
+			
 			<div class="form-group">
 				<label class="control-label" for="id_categoria"> Categoría </label> <select
 					class="form-control" id="id_categoria" name="categoria">
