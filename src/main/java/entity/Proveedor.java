@@ -1,6 +1,7 @@
 package entity;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,5 +19,8 @@ public class Proveedor {
 	private int estado;
 	private Date fechaRegistro;
 	private Pais pais;
+	private String nombre;
+	private String dni;
+	private Tipo tipo;
 	
 }
