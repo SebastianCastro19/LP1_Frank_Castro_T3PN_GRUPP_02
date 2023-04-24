@@ -20,7 +20,7 @@
 <h1>Registra Proveedor</h1>
 <h1>Autor: Miguel Cobeñas - 202216313</h1>
 
-	<form action="registraAlumno" id="id_form"> 
+	<form action="registraProveedor" id="id_form"> 
 			<input type="hidden" name="metodo" value="registra">	
 			<div class="form-group">
 				<label class="control-label" for="id_nombre">Nombres y apellidos completos del representante legal</label>
