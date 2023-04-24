@@ -12,6 +12,7 @@ import dao.RevistaDAO;
 import dao.SalaDAO;
 import dao.SeparacionDAO;
 import dao.TesisDAO;
+import dao.TipoDAO;
 import dao.UsuarioDAO;
 import dao.impl.MySqlAlumnoDAO;
 import dao.impl.MySqlAutorDAO;
@@ -26,9 +27,9 @@ import dao.impl.MySqlSalaDAO;
 import dao.impl.MySqlSeparacionDAO;
 import dao.impl.MySqlTesisDAO;
 import dao.impl.MySqlUsuarioDAO;
+import dao.impl.MySqlTipoDAO;
 
 public class FabricaMysql extends Fabrica {
-
 	public UsuarioDAO getUsuarioDAO() {			return new MySqlUsuarioDAO(); 	}
 	public AlumnoDAO getAlumnoDAO() {			return new MySqlAlumnoDAO(); 	}
 	public AutorDAO getAutorDAO() {				return new MySqlAutorDAO(); 	}
@@ -36,12 +37,13 @@ public class FabricaMysql extends Fabrica {
 	public SalaDAO getSalaDAO() {				return new MySqlSalaDAO(); 	}
 	public RevistaDAO getRevistaDAO() {			return new MySqlRevistaDAO(); 	}
 	public LibroDAO getLibroDAO() {				return new MySqlLibroDAO(); 	}
-	public ProveedorDAO getProveedorDAO() {		return new MySqlProveedorDAO(); 	}
 	public EditorialDAO getEditorialDAO() {		return new MySqlEditorialDAO(); 	}
 	public PrestamoDAO getPrestamoDAO() {		return new MySqlPrestamoDAO(); 	}
 	public SeparacionDAO getSeparacionDAO() {	return new MySqlSeparacionDAO(); 	}
-	public DevolucionDAO getDevolucionDAO() {	return new MySqlDevolucionDAO(); 	}
 	public GradoDAO getGradoDAO() {return new MySqlGradoDAO();}
-	
+	public DevolucionDAO getDevolucionDAO() {	return new MySqlDevolucionDAO(); 	}
+	public TipoDAO getTipo() { 		            return new MySqlTipoDAO();	}
+	public ProveedorDAO getProveedor() {return new MySqlProveedorDAO();}
+
 	
 }
