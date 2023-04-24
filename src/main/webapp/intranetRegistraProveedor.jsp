@@ -23,19 +23,18 @@
 	<form action="registraAlumno" id="id_form"> 
 			<input type="hidden" name="metodo" value="registra">	
 			<div class="form-group">
-				<label class="control-label" for="id_nombre">Nombres completos del representante legal</label>
-				<input class="form-control" type="text" id="id_nombre" name="nombre" placeholder="Ingrese el nombre">
+				<label class="control-label" for="id_nombre">Nombres y apellidos completos del representante legal</label>
+				<input class="form-control" type="text" id="id_nombre" name="nombre" placeholder="Ingrese el nombre" maxlength="45">
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="id_dni">DNI del representante legal</label>
 				<input class="form-control" type="text" id="id_dni" name="dni" placeholder="Ingrese el dni" maxlength="8">
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="id_tipo"> Tipo de empresa (Nacional/Extranjero)) </label> <select
+				<label class="control-label" for="id_tipo"> Tipo de empresa (Nacional/Extranjero) </label> <select
 					class="form-control" id="id_tipo" name="tipo">
 					<option value=" ">[Seleccione]</option>
-					<option value="1">Nacional</option>
-					<option value="2">Extranjero</option>
+
 				</select>
 			</div>
 			<div class="form-group">
@@ -59,7 +58,7 @@
 				<input class="form-control" type="text" id="id_contacto" name="contacto" placeholder="Ingrese el Nombre de la Persona de Contacto Telefonico" maxlength="200">
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="id_pais"> Tipo de empresa (Nacional/Extranjero)) </label> <select
+				<label class="control-label" for="id_pais"> Pais </label> <select
 					class="form-control" id="id_pais" name="pais">
 					<option value=" ">[Seleccione]</option>
 <option value="1">Afganistán</option>
@@ -308,7 +307,7 @@
 			
 			
 			<div class="form-group">
-				<button type="button" class="btn btn-primary" id="id_btn_registra">Crea Tipo</button>
+				<button type="button" class="btn btn-primary" id="id_btn_registra">Registrar Proveedor</button>
 			</div>
 	</form>
 </div>
