@@ -21,12 +21,19 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 		try {
 			conn = MySqlDBConexion.getConexion();
 			
-			String sql = "insert into proveedor values(null,?,?,?,?)";
+			String sql = "insert into proveedor values(null,?,?,?,?,?,?,?,?,?,?,?)";
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, obj.getNombre());
 			pstm.setString(2, obj.getDni());
 			pstm.setDate(3, obj.getFechaRegistro());
 			pstm.setInt(4, obj.getTipo().getIdTipo());
+			pstm.setString(5, obj.getRazonsocial());
+			pstm.setString(6, obj.getRuc());
+			pstm.setString(7, obj.getDireccion());
+			pstm.setString(8, obj.getCelular());
+			pstm.setString(9, obj.getContacto());
+			pstm.setInt(10,obj.getEstado());
+			pstm.setInt(11, obj.getPais().getIdPais());
 			
 			log.info(">>>> " + pstm);
 
