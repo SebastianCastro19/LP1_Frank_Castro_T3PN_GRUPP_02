@@ -17,6 +17,6 @@ public class Proveedor {
 	private String direccion;
 	private String celular;
 	private String contacto;
-	private int estado;
+	//private int estado;
 	private Pais pais;	
 }

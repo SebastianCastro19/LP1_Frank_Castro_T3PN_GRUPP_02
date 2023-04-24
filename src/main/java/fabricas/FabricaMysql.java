@@ -35,11 +35,16 @@ public class FabricaMysql extends Fabrica {
 	public SalaDAO getSalaDAO() {				return new MySqlSalaDAO(); 	}
 	public RevistaDAO getRevistaDAO() {			return new MySqlRevistaDAO(); 	}
 	public LibroDAO getLibroDAO() {				return new MySqlLibroDAO(); 	}
-	public ProveedorDAO getProveedorDAO() {		return new MySqlProveedorDAO(); 	}
+	//public ProveedorDAO getProveedorDAO() {		return new MySqlProveedorDAO(); 	}
 	public EditorialDAO getEditorialDAO() {		return new MySqlEditorialDAO(); 	}
 	public PrestamoDAO getPrestamoDAO() {		return new MySqlPrestamoDAO(); 	}
 	public SeparacionDAO getSeparacionDAO() {	return new MySqlSeparacionDAO(); 	}
 	public DevolucionDAO getDevolucionDAO() {	return new MySqlDevolucionDAO(); 	}	@Override
 	public TipoDAO getTipo() { 		            return new MySqlTipoDAO();	}
+	@Override
+	public ProveedorDAO getProveedor() {
+		// TODO Auto-generated method stub
+		return new MySqlProveedorDAO();
+	}
 	
 }

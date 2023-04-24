@@ -25,7 +25,7 @@ public abstract class Fabrica {
 	public abstract AutorDAO getAutorDAO();
 	public abstract EditorialDAO getEditorialDAO();
 	public abstract LibroDAO getLibroDAO();
-	public abstract ProveedorDAO getProveedorDAO();
+	public abstract ProveedorDAO getProveedor();
 	public abstract TipoDAO getTipo();
 	public abstract RevistaDAO getRevistaDAO();
 	public abstract SalaDAO getSalaDAO();
