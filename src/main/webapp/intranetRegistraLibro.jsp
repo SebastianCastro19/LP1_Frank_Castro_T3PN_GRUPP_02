@@ -27,23 +27,31 @@
 	<form action="registraLibro" id="id_form"> 
 			<input type="hidden" name="metodo" value="registra">	
 			
+STRING-TITULO
 			<div class="form-group">
-				<label class="control-label" for="idLibro">Código del libro</label>
-				<input class="form-control" type="text" id="id_libro" name="libro" placeholder="Ingrese el nombre">
+				<label class="control-label" for="id_titulo">Título del libro</label>
+				<input class="form-control" type="text" id="id_titulo" name="titulo" placeholder="Ingrese el título">
+			</div>
+INT-ANIO			
+			<div class="form-group">
+				<label class="control-label" for="anio">Año del libro</label>
+				<input class="form-control" type="number" id="id_anio" name="anio" placeholder="Ingrese el año">
+			</div>
+STRING-SERIE			
+			<div class="form-group">
+				<label class="control-label" for="id_serie">Serie del libro</label>
+				<input class="form-control" type="text" id="id_serie" name="titulo" placeholder="Ingrese el título">
+			</div>
+FECHA REGISTRO
+
+
+INT-ESTADO			
+			<div class="form-group">
+				<label class="control-label" for="anio">Año del libro</label>
+				<input class="form-control" type="number" id="id_anio" name="anio" placeholder="Ingrese el año">
 			</div>
 			
-			<div class="form-group">
-				<label class="control-label" for="titulo">Título del libro</label>
-				<input class="form-control" type="text" id="titulo" name="Titulo" placeholder="Ingrese el nombre">
-			</div>
-			
-			<div class="form-group">
-				<label class="control-label" for="id_dni">DNI</label>
-				<input class="form-control" type="text" id="id_dni" name="dni" placeholder="Ingrese el dni" maxlength="8">
-			</div>
-			
-			
-			
+CATEGORIA		
 			
 			<div class="form-group">
 				<label class="control-label" for="id_categoria"> Categoría </label> <select
