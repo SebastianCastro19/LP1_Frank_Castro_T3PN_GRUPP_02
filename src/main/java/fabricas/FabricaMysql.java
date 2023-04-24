@@ -4,6 +4,7 @@ import dao.AlumnoDAO;
 import dao.AutorDAO;
 import dao.DevolucionDAO;
 import dao.EditorialDAO;
+import dao.GradoDAO;
 import dao.LibroDAO;
 import dao.PrestamoDAO;
 import dao.ProveedorDAO;
@@ -17,6 +18,7 @@ import dao.impl.MySqlAlumnoDAO;
 import dao.impl.MySqlAutorDAO;
 import dao.impl.MySqlDevolucionDAO;
 import dao.impl.MySqlEditorialDAO;
+import dao.impl.MySqlGradoDAO;
 import dao.impl.MySqlLibroDAO;
 import dao.impl.MySqlPrestamoDAO;
 import dao.impl.MySqlProveedorDAO;
@@ -35,16 +37,13 @@ public class FabricaMysql extends Fabrica {
 	public SalaDAO getSalaDAO() {				return new MySqlSalaDAO(); 	}
 	public RevistaDAO getRevistaDAO() {			return new MySqlRevistaDAO(); 	}
 	public LibroDAO getLibroDAO() {				return new MySqlLibroDAO(); 	}
-	//public ProveedorDAO getProveedorDAO() {		return new MySqlProveedorDAO(); 	}
 	public EditorialDAO getEditorialDAO() {		return new MySqlEditorialDAO(); 	}
 	public PrestamoDAO getPrestamoDAO() {		return new MySqlPrestamoDAO(); 	}
 	public SeparacionDAO getSeparacionDAO() {	return new MySqlSeparacionDAO(); 	}
-	public DevolucionDAO getDevolucionDAO() {	return new MySqlDevolucionDAO(); 	}	@Override
+	public GradoDAO getGradoDAO() {return new MySqlGradoDAO();}
+	public DevolucionDAO getDevolucionDAO() {	return new MySqlDevolucionDAO(); 	}
 	public TipoDAO getTipo() { 		            return new MySqlTipoDAO();	}
-	@Override
-	public ProveedorDAO getProveedor() {
-		// TODO Auto-generated method stub
-		return new MySqlProveedorDAO();
-	}
+	public ProveedorDAO getProveedor() {return new MySqlProveedorDAO();}
+
 	
 }
