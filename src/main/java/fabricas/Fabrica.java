@@ -5,6 +5,7 @@ import dao.AutorDAO;
 import dao.DevolucionDAO;
 import dao.EditorialDAO;
 import dao.LibroDAO;
+import dao.PaisDAO;
 import dao.PrestamoDAO;
 import dao.ProveedorDAO;
 import dao.RevistaDAO;
@@ -21,6 +22,7 @@ public abstract class Fabrica {
 
 	public abstract UsuarioDAO getUsuarioDAO();
 	public abstract AlumnoDAO  getAlumnoDAO();
+	public abstract PaisDAO getPaisDAO();
 	public abstract AutorDAO getAutorDAO();
 	public abstract EditorialDAO getEditorialDAO();
 	public abstract LibroDAO getLibroDAO();
