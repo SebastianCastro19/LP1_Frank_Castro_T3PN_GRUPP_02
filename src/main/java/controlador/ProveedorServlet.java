@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 import dao.ProveedorDAO;
 import entity.Proveedor;
 import entity.Respuesta;
-import entity.Tipo;
 import fabricas.Fabrica;
 import entity.Pais;
 
@@ -26,32 +25,27 @@ public class ProveedorServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
-			String vnombre = req.getParameter("nombre");
-			String vdni = req.getParameter("dni");
-			String vtipo = req.getParameter("tipo");
 			String vrazonsocial = req.getParameter("razonsocial");
 			String vruc = req.getParameter("ruc");
-			String vdireccion = req.getParameter("direccion");
-			String vpais = req.getParameter("pais");
+			String vdireccion = req.getParameter("direccion");			
 			String vcelular = req.getParameter("celular");
 			String vcontacto = req.getParameter("contacto");
+			String vpais = req.getParameter("pais");
 
-			Tipo objTipo = new Tipo();
-			objTipo.setIdTipo(Integer.parseInt(vtipo));
 			Pais objPais = new Pais();
 			objPais.setIdPais(Integer.parseInt(vpais));
 			
 			Proveedor objProveedor = new Proveedor();
-			objProveedor.setNombre(vnombre);
-			objProveedor.setDni(vdni);
-			objProveedor.setFechaRegistro(new Date(System.currentTimeMillis()));
-			objProveedor.setTipo(objTipo);
+			//objProveedor.setNombre(vnombre);
+			//objProveedor.setDni(vdni);			
+			//objProveedor.setTipo(objTipo);
 			objProveedor.setRazonsocial(vrazonsocial);
 			objProveedor.setRuc(vruc);
-			objProveedor.setDireccion(vdireccion);
-			objProveedor.setPais(objPais);
+			objProveedor.setDireccion(vdireccion);			
 			objProveedor.setCelular(vcelular);
 			objProveedor.setContacto(vcontacto);
+			objProveedor.setPais(objPais);
+			objProveedor.setFechaRegistro(new Date(System.currentTimeMillis()));
 			
 			
 			Fabrica fabrica = Fabrica.getFabrica(Fabrica.MYSQL);
