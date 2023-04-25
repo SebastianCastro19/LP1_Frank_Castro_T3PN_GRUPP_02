@@ -32,11 +32,6 @@ import dao.impl.MySqlUsuarioDAO;
 import dao.impl.MySqlTipoDAO;
 
 public class FabricaMysql extends Fabrica {
-<<<<<<< HEAD
-
-	
-=======
->>>>>>> branch 'master' of https://github.com/jorgejacinto9701/lp1_20231_martes_web_grupo_02
 	public UsuarioDAO getUsuarioDAO() {			return new MySqlUsuarioDAO(); 	}
 	public AlumnoDAO getAlumnoDAO() {			return new MySqlAlumnoDAO(); 	}
 	public AutorDAO getAutorDAO() {				return new MySqlAutorDAO(); 	}
