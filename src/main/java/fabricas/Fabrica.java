@@ -4,6 +4,7 @@ import dao.AlumnoDAO;
 import dao.AutorDAO;
 import dao.DevolucionDAO;
 import dao.EditorialDAO;
+import dao.GradoDAO;
 import dao.LibroDAO;
 import dao.PaisDAO;
 import dao.PrestamoDAO;
@@ -12,6 +13,7 @@ import dao.RevistaDAO;
 import dao.SalaDAO;
 import dao.SeparacionDAO;
 import dao.TesisDAO;
+import dao.TipoDAO;
 import dao.UsuarioDAO;
 
 
@@ -24,9 +26,13 @@ public abstract class Fabrica {
 	public abstract AlumnoDAO  getAlumnoDAO();
 	public abstract PaisDAO getPaisDAO();
 	public abstract AutorDAO getAutorDAO();
+	//Cambios
+	public abstract GradoDAO getGradoDAO();
+	
 	public abstract EditorialDAO getEditorialDAO();
 	public abstract LibroDAO getLibroDAO();
-	public abstract ProveedorDAO getProveedorDAO();
+	public abstract ProveedorDAO getProveedor();
+	public abstract TipoDAO getTipo();
 	public abstract RevistaDAO getRevistaDAO();
 	public abstract SalaDAO getSalaDAO();
 	public abstract TesisDAO getTesisDAO();
