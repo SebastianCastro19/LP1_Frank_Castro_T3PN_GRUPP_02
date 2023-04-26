@@ -32,7 +32,6 @@ public class AlumnoControlador extends HttpServlet {
 			String vdni = req.getParameter("dni");
 			String vcorreo = req.getParameter("correo");
 			String vfechaNacimiento = req.getParameter("fechaNacimiento");
-			String vestado = req.getParameter("estado");
 			String vpais = req.getParameter("pais");
 			
 			Pais objPais = new Pais();
