@@ -1,6 +1,7 @@
 package entity;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,7 @@ public class Alumno {
 	private String dni;
 	private String correo;
 	private Date fechaNacimiento;
-	private Date fechaRegistro;
+	private Timestamp fechaRegistro;
 	private int estado;
 	private Pais pais;
 	

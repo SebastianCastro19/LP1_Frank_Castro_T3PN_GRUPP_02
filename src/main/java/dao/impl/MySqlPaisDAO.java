@@ -7,32 +7,33 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import dao.TipoDAO;
-import entity.Tipo;
+import dao.PaisDAO;
+import entity.Pais;
 import util.MySqlDBConexion;
 
-public class MySqlTipoDAO implements TipoDAO{
+public class MySqlPaisDAO implements PaisDAO{
 
-	private static Logger log = Logger.getLogger(MySqlTipoDAO.class.getName());
-	
-	public List<Tipo> listaTipos() {
-		List<Tipo> lista = new ArrayList<Tipo>();
+	private static Logger log = Logger.getLogger(MySqlPaisDAO.class.getName());
+
+	public List<Pais> listaPais() {
+		List<Pais> lista = new ArrayList<Pais>();
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			conn = MySqlDBConexion.getConexion();
-			
-			String sql = "select * from tipo";
+
+			String sql = "select * from pais";
 			pstm = conn.prepareStatement(sql);
 			log.info(">>>> " + pstm);
 
 			rs = pstm.executeQuery();
-			Tipo obj = null;
+			Pais obj = null;
 			while(rs.next()) {
-				obj = new Tipo();
-				obj.setIdTipo(rs.getInt(1));
-				obj.setDescripcion(rs.getString(2));
+				obj = new Pais();
+				obj.setIdPais(rs.getInt(1));
+				obj.setIso(rs.getString(2));
+				obj.setNombre(rs.getString(3));
 				lista.add(obj);
 			}
 		} catch (Exception e) {
@@ -43,7 +44,7 @@ public class MySqlTipoDAO implements TipoDAO{
 				if (conn != null) conn.close();
 			} catch (Exception e2) {}
 		}
-		
+
 		return lista;
 	}
 }

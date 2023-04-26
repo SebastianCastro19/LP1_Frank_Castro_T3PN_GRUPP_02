@@ -1,7 +1,7 @@
 package entity;
 
 import java.sql.Date;
-
+import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,13 +9,13 @@ import lombok.Setter;
 @Setter
 public class Autor {
   
-
+    //Declaracion de atributos de la tabla Autor
 	private int idAutor;
 	private String nombres;
 	private String apellidos;
 	private Date fechaNacimiento;
 	private String telefono;
-	private Date fechaRegistro;
+	private Timestamp fechaRegistro;
 	private int estado;
 	private Grado grado;
 	

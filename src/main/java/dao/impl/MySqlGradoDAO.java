@@ -6,32 +6,31 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
-import dao.TipoDAO;
-import entity.Tipo;
+import dao.GradoDAO;
+import entity.Grado;
 import util.MySqlDBConexion;
 
-public class MySqlTipoDAO implements TipoDAO{
-
-	private static Logger log = Logger.getLogger(MySqlTipoDAO.class.getName());
+public class MySqlGradoDAO implements GradoDAO {
+private static Logger log = Logger.getLogger(MySqlGradoDAO.class.getName());
 	
-	public List<Tipo> listaTipos() {
-		List<Tipo> lista = new ArrayList<Tipo>();
+	public List<Grado> listaGrado() {
+		List<Grado> lista = new ArrayList<Grado>();
 		Connection conn = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			conn = MySqlDBConexion.getConexion();
 			
-			String sql = "select * from tipo";
+			String sql = "select * from grado_autor";
 			pstm = conn.prepareStatement(sql);
 			log.info(">>>> " + pstm);
 
 			rs = pstm.executeQuery();
-			Tipo obj = null;
+			Grado obj = null;
+			
 			while(rs.next()) {
-				obj = new Tipo();
-				obj.setIdTipo(rs.getInt(1));
+				obj = new Grado();
+				obj.setIdGrado(rs.getInt(1));
 				obj.setDescripcion(rs.getString(2));
 				lista.add(obj);
 			}
