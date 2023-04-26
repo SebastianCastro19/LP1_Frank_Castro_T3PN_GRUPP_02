@@ -14,9 +14,9 @@
 <title>Registra Proveedor</title>
 </head>
 <body>
+<jsp:include page="intranetCabecera.jsp" />
 
-
-<div class="container">
+<div class="container" style="margin-top: 4%">
 <h1>Registra Proveedor</h1>
 <h1>Autor: Miguel Cobeñas - 202216313</h1>
 
