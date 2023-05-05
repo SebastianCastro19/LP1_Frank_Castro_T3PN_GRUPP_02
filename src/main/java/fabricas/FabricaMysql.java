@@ -12,6 +12,7 @@ import dao.PrestamoDAO;
 import dao.ProveedorDAO;
 import dao.RevistaDAO;
 import dao.SalaDAO;
+import dao.SedeDAO;
 import dao.SeparacionDAO;
 import dao.TesisDAO;
 import dao.UsuarioDAO;
@@ -27,6 +28,7 @@ import dao.impl.MySqlPrestamoDAO;
 import dao.impl.MySqlProveedorDAO;
 import dao.impl.MySqlRevistaDAO;
 import dao.impl.MySqlSalaDAO;
+import dao.impl.MySqlSedeDAO;
 import dao.impl.MySqlSeparacionDAO;
 import dao.impl.MySqlTesisDAO;
 import dao.impl.MySqlUsuarioDAO;
@@ -47,6 +49,7 @@ public class FabricaMysql extends Fabrica {
 	public DevolucionDAO getDevolucionDAO() {	return new MySqlDevolucionDAO(); 	}
 	//public TipoDAO getTipo() { 		            return new MySqlTipoDAO();	}
 	public ProveedorDAO getProveedor() {return new MySqlProveedorDAO();}
+	public SedeDAO getSedeDAO() {return new MySqlSedeDAO();}
 	public ModalidadDAO getModalidadDAO() {	return new MySqlModalidadDAO(); 	}
 
 	

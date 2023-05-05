@@ -12,6 +12,7 @@ import dao.PrestamoDAO;
 import dao.ProveedorDAO;
 import dao.RevistaDAO;
 import dao.SalaDAO;
+import dao.SedeDAO;
 import dao.SeparacionDAO;
 import dao.TesisDAO;
 import dao.UsuarioDAO;
@@ -40,6 +41,7 @@ public abstract class Fabrica {
 	public abstract PrestamoDAO getPrestamoDAO();
 	public abstract SeparacionDAO getSeparacionDAO();
 	public abstract ModalidadDAO getModalidadDAO();
+	public abstract SedeDAO getSedeDAO();
 	
 	public static Fabrica getFabrica(int tipo){
 		Fabrica salida = null;

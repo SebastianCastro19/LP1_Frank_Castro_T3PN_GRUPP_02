@@ -1,7 +1,8 @@
 package dao;
 
-public interface EditorialDAO {
+import entity.Editorial;
 
-	
+public interface EditorialDAO {
+	public abstract int insertaEditorial(Editorial obj);
 }
 
