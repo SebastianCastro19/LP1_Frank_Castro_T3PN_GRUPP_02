@@ -1,7 +1,9 @@
 package dao;
 
-public interface TesisDAO {
+import entity.Tesis;
 
-	
+public interface TesisDAO {
+	int insertaTesis(Tesis objTesis);
+
 }
 
