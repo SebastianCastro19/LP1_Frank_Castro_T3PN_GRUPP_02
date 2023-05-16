@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 
 import dao.AlumnoDAO;
 import entity.Alumno;
-import entity.Pais;
 import util.MySqlDBConexion;
 
 public class MySqlAlumnoDAO implements AlumnoDAO {
