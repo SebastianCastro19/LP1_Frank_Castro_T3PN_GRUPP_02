@@ -1,7 +1,9 @@
 package dao;
 
-public interface RevistaDAO {
+import entity.Revista;
 
+public interface RevistaDAO {
 	
+	public abstract int insertaRevista(Revista obj);
 }
 

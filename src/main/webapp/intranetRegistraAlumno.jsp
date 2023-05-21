@@ -117,7 +117,7 @@ $(document).ready(function() {
                     },
                     regexp: {
                         regexp: /^[0-9]{9}$/,
-                        message: 'El dni tiene 9 dígitos'
+                        message: 'El numero tiene 9 dígitos'
                     },
         		}
         	},

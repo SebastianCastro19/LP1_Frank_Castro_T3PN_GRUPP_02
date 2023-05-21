@@ -1,6 +1,6 @@
 package entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,12 +13,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Tesis {
   
-
 	private int idTesis;
 	private String titulo;
 	private String tema;
-	private Date fechaCreacion;
-	private Date fechaRegistro;
+	private Timestamp fechaCreacion;
+	private Timestamp fechaRegistro;
 	private int estado;
 	private Alumno alumno;
 	
