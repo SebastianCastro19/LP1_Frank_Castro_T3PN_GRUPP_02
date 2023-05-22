@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import dao.ProveedorDAO;
 import entity.Categoria;
 import entity.Proveedor;
-import entity.Proveedor;
 import util.MySqlDBConexion;
 
 public class MySqlProveedorDAO implements ProveedorDAO {
