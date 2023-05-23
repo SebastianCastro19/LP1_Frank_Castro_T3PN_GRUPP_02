@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import dao.ProveedorDAO;
-import entity.Categoria;
+import entity.Pais;
 import entity.Proveedor;
 import util.MySqlDBConexion;
 
@@ -32,7 +32,7 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 			pstm.setString(3, obj.getDireccion());
 			pstm.setString(4, obj.getCelular());
 			pstm.setString(5, obj.getContacto());
-			pstm.setInt(6,1);
+			pstm.setInt(6,obj.getEstado());
 			pstm.setDate(7, obj.getFechaRegistro());
 			pstm.setInt(8, obj.getPais().getIdPais());
 			
@@ -60,9 +60,7 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 		try {
 			conn = MySqlDBConexion.getConexion();
 			
-			String sql = "select cl.*, ca.nombre from cliente cl inner join categoria ca on "
-					+ " cl.idCategoria = ca.idCategoria "
-					+ " where cl.nombre like ? ";
+			String sql = "select prov.* from sistema_biblioteca_202301.proveedor prov where prov.razonsocial =? ";
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, filtro);
 			
@@ -70,17 +68,25 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 
 			rs = pstm.executeQuery();
 			Proveedor objProveedor = null;
-			//Categoria objCategoria = null;
+			Pais objPais = null;
 			while(rs.next()) {
+				
 				objProveedor = new Proveedor();
 				objProveedor.setRazonsocial(rs.getString(1));
 				objProveedor.setRuc(rs.getString(2));
 				objProveedor.setDireccion(rs.getString(3));
 				objProveedor.setCelular(rs.getString(4));
 				objProveedor.setContacto(rs.getString(5));
+				objProveedor.setEstado(rs.getInt(5));
+				objProveedor.setFechaRegistro(rs.getDate(6));
 				
-
 				
+				objPais = new Pais();
+				objPais.setIdPais(rs.getInt(7));
+				
+				
+				
+				objProveedor.setPais(objPais);				
 				lista.add(objProveedor);
 			}
 		} catch (Exception e) {
@@ -104,7 +110,7 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 		try {
 			conn = MySqlDBConexion.getConexion();
 			
-			String sql = "delete from proveedor where ruc = ?";
+			String sql = "delete from sistema_biblioteca_202301.proveedor where idProveedor = ?";
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1,ruc);
 		
@@ -132,20 +138,17 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 		try {
 			conn = MySqlDBConexion.getConexion();
 			
-			String sql = "insert into proveedor values(null,?,?,?,?,?,?,?,?)";
+			String sql = "insert into sistema_biblioteca_202301.proveedor values(null,?,?,?,?,?,?,?,?)";
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, obj.getRazonsocial());
 			pstm.setString(2, obj.getRuc());
 			pstm.setString(3, obj.getDireccion());
 			pstm.setString(4, obj.getCelular());
 			pstm.setString(5, obj.getContacto());
-			pstm.setInt(6,1);
+			pstm.setInt(6,obj.getEstado());
 			pstm.setDate(7, obj.getFechaRegistro());
 			pstm.setInt(8, obj.getPais().getIdPais());
-			//pstm.setString(1, obj.getNombre());
-			//pstm.setString(2, obj.getDni());		
-			//pstm.setInt(4, obj.getTipo().getIdTipo());	
-			//pstm.setInt(10,obj.getEstado());				
+			
 			log.info(">>>> " + pstm);
 
 			salida = pstm.executeUpdate();
@@ -159,5 +162,47 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 		}
 		
 		return salida;
+	}
+	
+	
+	public Proveedor buscaProveedor(int idProveedor) {
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		Proveedor objProveedor = null;
+		try {
+			conn = MySqlDBConexion.getConexion();
+			
+			String sql = "select prov.* from proveedor prov where prov.idProveedor =?";
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, idProveedor);
+			
+			log.info(">>>> " + pstm);
+
+			rs = pstm.executeQuery();
+			Pais objPais = null;
+			while(rs.next()) {
+				objProveedor = new Proveedor();
+				objProveedor.setIdProveedor(rs.getInt(1));
+				objProveedor.setRazonsocial(rs.getString(2));
+				objProveedor.setRuc(rs.getString(3));
+				objProveedor.setDireccion(rs.getString(4));  //rs.getTimestamp(4)
+				objProveedor.setCelular(rs.getString(5));
+				objProveedor.setContacto(rs.getString(6));
+				objProveedor.setEstado(rs.getInt(7));
+				
+				objPais = new Pais();
+				objPais.setIdPais(rs.getInt(8));
+				objProveedor.setPais(objPais);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null) pstm.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+		return objProveedor;
 	}
 }

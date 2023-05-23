@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html lang="esS" >
 <head>
@@ -6,14 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrapValidator.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css" />
+<link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrapValidator.css" />
 
-<link rel="stylesheet" href="css/bootstrap.css"/>
+<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/dataTables.bootstrap.min.js"></script>
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css"/>
-<link rel="stylesheet" href="css/bootstrapValidator.css"/>
 
 <title>Sistemas - Jorge Jacinto Gutarra</title>
 </head>
@@ -28,7 +29,7 @@
 				<label class="control-label" for="id_filtro">Razón Social</label> 
 			</div>	
 			<div class="col-md-6">
-				<input	class="form-control" type="text" id="id_filtro" placeholder="Ingrese el nombre de la razón social de la empresa">
+				<input	class="form-control" type="text" id="id_filtro" placeholder="Ingrese el razonsocial de la razón social de la empresa">
 			</div>	
 			<div class="col-md-1">
 				<button type="button" class="btn btn-primary" id="id_btn_filtro">Filtrar</button>
@@ -43,11 +44,13 @@
 			<table id="id_table" class="table table-bordered table-hover table-condensed" >
 				<thead style='background-color:#337ab7; color:white'>
 					<tr>
+					    <th>Id Proveedor</th>
 						<th>RUC</th>
 						<th>Razón Social</th>
 						<th>Dirección</th>
 						<th>Teléfono</th>
 						<th>Nombre del Contacto</th>
+						<th>Estado</th>
 						<th>País</th>
 					</tr>
 				</thead>
@@ -73,49 +76,50 @@
 			                   			<form id="id_form_registra">
 			                   			<input type="hidden" name="metodo" value="inserta">
 			                   			<div class="panel-body">
-			                   				<div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_reg_dni">RUC</label>
+			                   			
+			                   			    <div class="form-group" >
+		                                        <label class="col-lg-3 control-label" for="id_reg_razonsocial">Razón Social</label>
 		                                        <div class="col-lg-8">
-													<input class="form-control" id="id_reg_dni" name="dni" placeholder="Ingrese el RUC de la empresa" type="text" maxlength="11"/>
-		                                        </div>
-		                                    </div> 
-		                                    
-			                                <div class="form-group" >
-		                                        <label class="col-lg-3 control-label" for="id_reg_nombre">Razón Social</label>
-		                                        <div class="col-lg-8">
-													<input class="form-control" id="id_reg_nombre" name="nombre" placeholder="Ingrese el nombre de la razón social de la empresa" type="text" maxlength="100"/>
+													<input class="form-control" id="id_reg_razonsocial" name="razonsocial" placeholder="Ingrese el razonsocial de la razón social de la empresa" type="text" maxlength="100"/>
 		                                        </div>
 		                                    </div> 	
 		                                    
-		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_reg_categoria">Dirección</label>
+			                   				<div class="form-group">
+		                                        <label class="col-lg-3 control-label" for="id_reg_ruc">RUC</label>
 		                                        <div class="col-lg-8">
-													<input class="form-control" id="id_reg_nombre" name="nombre" placeholder="Ingrese la dirección" type="text" maxlength="100"/>
+													<input class="form-control" id="id_reg_ruc" name="ruc" placeholder="Ingrese el RUC de la empresa" type="text" maxlength="11"/>
+		                                        </div>
+		                                    </div> 	                               
+
+		                                    <div class="form-group">
+		                                        <label class="col-lg-3 control-label" for="id_reg_direccion">Dirección</label>
+		                                        <div class="col-lg-8">
+													<input class="form-control" id="id_reg_direccion" name="direccion" placeholder="Ingrese la dirección" type="text" maxlength="100"/>
 		                                        </div>
 		                                    </div>
 		                                    
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_reg_categoria">Teléfono</label>
+		                                        <label class="col-lg-3 control-label" for="id_reg_telefono">Teléfono</label>
 		                                        <div class="col-lg-8">
-													<input class="form-control" id="id_reg_nombre" name="nombre" placeholder="Ingrese el teléfono" type="text" maxlength="9"/>
+													<input class="form-control" id="id_reg_telefono" name="telefono" placeholder="Ingrese el teléfono" type="text" maxlength="9"/>
 		                                        </div>
 		                                    </div> 
 		                                    
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_reg_categoria">Nombre del contacto</label>
+		                                        <label class="col-lg-3 control-label" for="id_reg_contacto">Nombre del contacto</label>
 		                                        <div class="col-lg-8">
-													<input class="form-control" id="id_reg_nombre" name="nombre" placeholder="Ingrese el Nombre del Contacto" type="text" maxlength="100"/>
+													<input class="form-control" id="id_reg_contacto" name="contacto" placeholder="Ingrese el Nombre del Contacto" type="text" maxlength="100"/>
 		                                        </div>
 		                                    </div> 
 	
 			                                <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_reg_categoria">País</label>
+		                                        <label class="col-lg-3 control-label" for="id_reg_pais">País</label>
 		                                        <div class="col-lg-8">
-													<select class="form-control" id="id_reg_categoria" name="categoria">
+													<select class="form-control" id="id_reg_pais" name="pais">
 														<option value=" ">[Seleccione]</option>
 													</select>
 		                                        </div>
-		                                    </div> 	 
+		                                    </div> 	
  
 
 		                                    <div class="form-group">
@@ -151,57 +155,64 @@
 			                   		<div id="stepOne" class="panel-collapse collapse in">
 			                   			<form id="id_form_actualiza">
 			                   			<input type="hidden" name="metodo" value="actualiza">
-			                   			<input type="hidden" name="idCliente" id="idCliente">
+			                   			<input type="hidden" name="idProveedor" id="idProveedor">
 			                   			<div class="panel-body">
+			                   			
+			                   			
 			                   				<div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_reg_dni">RUC</label>
+		                                        <label class="col-lg-3 control-label" for="id_reg_ruc">RUC</label>
 		                                        <div class="col-lg-8">
-													<input class="form-control" id="id_reg_dni" name="dni" placeholder="Ingrese el RUC de la empresa" type="text" maxlength="11"/>
+													<input class="form-control" id="id_reg_ruc" name="ruc" placeholder="Ingrese el RUC de la empresa" type="text" maxlength="11"/>
 		                                        </div>
 		                                    </div> 
 		                                    
 			                                <div class="form-group" >
-		                                        <label class="col-lg-3 control-label" for="id_reg_nombre">Razón Social</label>
+		                                        <label class="col-lg-3 control-label" for="id_reg_razonsocial">Razón Social</label>
 		                                        <div class="col-lg-8">
-													<input class="form-control" id="id_reg_nombre" name="nombre" placeholder="Ingrese el nombre de la razón social de la empresa" type="text" maxlength="100"/>
+													<input class="form-control" id="id_reg_razonsocial" name="razonsocial" placeholder="Ingrese el razonsocial de la razón social de la empresa" type="text" maxlength="100"/>
 		                                        </div>
 		                                    </div> 	
 		                                    
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_reg_categoria">Dirección</label>
+		                                        <label class="col-lg-3 control-label" for="id_reg_direccion">Dirección</label>
 		                                        <div class="col-lg-8">
-													<input class="form-control" id="id_reg_nombre" name="nombre" placeholder="Ingrese la dirección" type="text" maxlength="100"/>
+													<input class="form-control" id="id_reg_direccion" name="direccion" placeholder="Ingrese la dirección" type="text" maxlength="100"/>
 		                                        </div>
 		                                    </div>
 		                                    
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_reg_categoria">Teléfono</label>
+		                                        <label class="col-lg-3 control-label" for="id_reg_telefono">Teléfono</label>
 		                                        <div class="col-lg-8">
-													<input class="form-control" id="id_reg_nombre" name="nombre" placeholder="Ingrese el teléfono" type="text" maxlength="9"/>
+													<input class="form-control" id="id_reg_telefono" name="telefono" placeholder="Ingrese el teléfono" type="text" maxlength="9"/>
 		                                        </div>
 		                                    </div> 
 		                                    
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_reg_categoria">Nombre del contacto</label>
+		                                        <label class="col-lg-3 control-label" for="id_reg_contacto">Nombre del contacto</label>
 		                                        <div class="col-lg-8">
-													<input class="form-control" id="id_reg_nombre" name="nombre" placeholder="Ingrese el Nombre del Contacto" type="text" maxlength="100"/>
+													<input class="form-control" id="id_reg_contacto" name="contacto" placeholder="Ingrese el Nombre del Contacto" type="text" maxlength="100"/>
 		                                        </div>
 		                                    </div> 
 	
 			                                <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_reg_categoria">País</label>
+		                                        <label class="col-lg-3 control-label" for="id_reg_pais">País</label>
 		                                        <div class="col-lg-8">
-													<select class="form-control" id="id_reg_categoria" name="categoria">
+													<select class="form-control" id="id_reg_pais" name="pais">
 														<option value=" ">[Seleccione]</option>
 													</select>
 		                                        </div>
 		                                    </div> 	 
+		                                    
+		                                    
+		                                    
 		                                    <div class="form-group">
 		                                        <div class="col-lg-12" align="center">
 		                                        	<button type="button" style="width: 80px" id="id_btn_actualiza" class="btn btn-primary btn-sm">Actualiza</button>
 		                                        	<button type="button" style="width: 80px" id="id_btn_act_cancelar" class="btn btn-primary btn-sm" data-dismiss="modal">Cancela</button>
 		                                        </div>
 		                                    </div>   
+		                                    
+		                                    
 			                             </div>
 			                             </form>
 			                        </div>
@@ -219,7 +230,7 @@
 	<script type="text/javascript">
 		$("#id_btn_filtro").click(function() {
 			var vfiltro = $("#id_filtro").val();
-			$.getJSON("crudCliente", {"metodo":"lista","filtro":vfiltro}, function(data) {
+			$.getJSON("crudProveedor", {"metodo":"lista","filtro":vfiltro}, function(data) {
 				agregarGrilla(data);
 			});
 		});
@@ -241,53 +252,58 @@
 			            loadingIndicator: true
 			        },
 					columns:[
-						{data: "idCliente",className:'text-center'},
-						{data: "nombre",className:'text-center'},
-						{data: "dni",className:'text-center'},
+						{data: "idProveedor",className:'text-center'},
+						{data: "razonsocial",className:'text-center'},
+						{data: "ruc",className:'text-center'},						
+						{data: "direccion",className:'text-center'},
+						{data: "telefono",className:'text-center'},						
+						{data: "contacto",className:'text-center'},
 						{data: function(row, type, val, meta){
 							return row.estado == 1 ? "Activo" : "Inactivo";  
 						},className:'text-center'},
-						{data: "categoria.nombre",className:'text-center'},
+						{data: "pais.nombre",className:'text-center'},
 						{data: function(row, type, val, meta){
-							return '<button type="button" class="btn btn-info btn-sm" onClick="verFormularioActualiza(\'' + row.idCliente + '\',\'' +  row.nombre   + '\',\'' +  row.dni + '\',\'' +  row.estado + '\',\'' +  row.categoria.idCategoria +'\');">Editar</button>';  
+							return '<button type="button" class="btn btn-info btn-sm" onClick="verFormularioActualiza(\'' + row.idProveedor   + '\',\'' + row.razonsocial   + '\',\'' +  row.ruc + '\',\'' + row.direccion + '\',\'' + row.telefono + '\',\'' + row.contacto + '\',\'' + row.estado + '\',\'' + row.pais.nombre +'\');">Editar</button>';  
 						},className:'text-center'},
 						{data: function(row, type, val, meta){
-							return '<button type="button" class="btn btn-warning btn-sm" onClick="eliminacionLogica(\'' + row.idCliente +'\');" >E.Lógica</button>';
+							return '<button type="button" class="btn btn-warning btn-sm" onClick="eliminacionLogica(\'' + row.idProveedor +'\');" >E.Lógica</button>';
 						},className:'text-center'},
 						{data: function(row, type, val, meta){
-							return '<button type="button" class="btn btn-danger btn-sm"  onClick="eliminacionFisica(\'' + row.idCliente +'\');" >E.Física</button>';
+							return '<button type="button" class="btn btn-danger btn-sm"  onClick="eliminacionFisica(\'' + row.idProveedor +'\');" >E.Física</button>';
 						},className:'text-center'},
 					]                                     
 			    });
 		}
 		
-		function verFormularioActualiza(idCliente, nombre, dni, estado, categoria){
-			console.log(">> verFormularioActualiza >> " + idCliente);
-			$("#id_div_modal_actualiza").modal("show");
-			$("#idCliente").val(idCliente);
-			$("#id_act_nombre").val(nombre);
-			$("#id_act_dni").val(dni);
-			$("#id_act_estado").val(estado);
-			$("#id_act_categoria").val(categoria);
+		function verFormularioActualiza(idProveedor, razonsocial, ruc, estado, pais){
+			console.log(">> verFormularioActualiza >> " + idProveedor);
+			           
+			$("#idProveedor").val(idProveedor);
+			$("#id_act_razonsocial").val(razonsocial);
+			$("#id_act_ruc").val(ruc);
+			$("#id_act_direccion").val(direccion);
+			$("#id_act_telefono").val(telefono);
+			$("#id_act_contacto").val(contacto);
+			$("#id_act_pais").val(pais);
 		}
 		
-		$.getJSON("cargaCategoria",{}, function (data){
+		$.getJSON("cargaPais",{}, function (data){
 			$.each(data, function(index, item){
-				$("#id_reg_categoria").append("<option value='"+ item.idCategoria +"'>"+ item.nombre+"</option>");
-				$("#id_act_categoria").append("<option value='"+ item.idCategoria +"'>"+ item.nombre+"</option>");
+				$("#id_reg_pais").append("<option value='"+ item.idPais +"'>"+ item.nombre+"</option>");
+				$("#id_act_pais").append("<option value='"+ item.idPais +"'>"+ item.nombre+"</option>");
 			})
 		});
 		
-		function eliminacionFisica(idCliente){	
-			var array = [idCliente];
+		function eliminacionFisica(idProveedor){	
+			var array = [idProveedor];
 			mostrarMensajeConfirmacion(MSG_ELIMINAR, accionEliminacionFisica,null,array);
 		}
 
 		function accionEliminacionFisica(array){
 			 $.ajax({
 		          type: "POST",
-		          url: "crudCliente", 
-		          data: {"metodo":"eFisica", "idCliente":array[0]},
+		          url: "crudProveedor", 
+		          data: {"metodo":"eFisica", "idProveedor":array[0]},
 		          success: function(data){
 		        	  mostrarMensaje(data.mensaje);
 		        	  agregarGrilla(data.datos);
@@ -305,7 +321,7 @@
 		    if (validator.isValid()) {
 		        $.ajax({
 			          type: "POST",
-			          url: "crudCliente", 
+			          url: "crudProveedor", 
 			          data: $('#id_form_registra').serialize(),
 			          success: function(data){
 			        	  mostrarMensaje(data.mensaje);
@@ -327,7 +343,7 @@
 		    if (validator.isValid()) {
 		        $.ajax({
 			          type: "POST",
-			          url: "crudCliente", 
+			          url: "crudProveedor", 
 			          data: $('#id_form_actualiza').serialize(),
 			          success: function(data){
 			        	  mostrarMensaje(data.mensaje);
@@ -343,11 +359,11 @@
 		});
 		
 		
-		function eliminacionLogica(idCliente){
+		function eliminacionLogica(idProveedor){
 			 $.ajax({
 		          type: "POST",
-		          url: "crudCliente", 
-		          data: {"metodo":"eLogica", "idCliente":idCliente},
+		          url: "crudProveedor", 
+		          data: {"metodo":"eLogica", "idProveedor":idProveedor},
 		          success: function(data){
 		        	  agregarGrilla(data.datos);
 		          },
@@ -367,36 +383,36 @@
 		        },
 		        
 		        fields:{
-		        	nombre : {  
-		        		selector: "#id_reg_nombre",
+		        	razonsocial : {  
+		        		selector: "#id_reg_razonsocial",
 		        		validators : {
 		        			notEmpty: {
-		                        message: 'El nombre es requerido'
+		                        message: 'El nombre de la razón social es requerido'
 		                    },
 		                    stringLength: {
 		                        min: 3,
 		                        max: 30,
-		                        message: 'El nombre tiene de 3 a 30 caracteres'
+		                        message: 'El nombre de la razón social tiene de 3 a 30 caracteres'
 		                    },
 		        		}
 		        	},
-		        	dni : {
-		        		selector: "#id_reg_dni",
+		        	ruc : {
+		        		selector: "#id_reg_ruc",
 		        		validators : {
 		        			notEmpty: {
-		                        message: 'El dni es requerido'
+		                        message: 'El ruc es requerido'
 		                    },
 		                    regexp: {
-		                        regexp: /^[0-9]{8}$/,
-		                        message: 'El dni tiene 8 dígitos'
+		                        regexp: /^[0-9]{11}$/,
+		                        message: 'El ruc tiene 11 dígitos'
 		                    },
 		        		}
 		        	},
-		        	categoria : {
-		        		selector: "#id_reg_categoria",
+		        	pais : {
+		        		selector: "#id_reg_pais",
 		        		validators : {
 		        			notEmpty: {
-		                        message: 'La categoría es requerida'
+		                        message: 'El país es requerido'
 		                    },
 		        		}
 		        	},        	
@@ -414,28 +430,28 @@
 		        },
 		        
 		        fields:{
-		        	nombre : {  
-		        		selector: "#id_act_nombre",
+		        	razonsocial : {  
+		        		selector: "#id_act_razonsocial",
 		        		validators : {
 		        			notEmpty: {
-		                        message: 'El nombre es requerido'
+		                        message: 'El razonsocial es requerido'
 		                    },
 		                    stringLength: {
 		                        min: 3,
 		                        max: 30,
-		                        message: 'El nombre tiene de 3 a 30 caracteres'
+		                        message: 'El razonsocial tiene de 3 a 30 caracteres'
 		                    },
 		        		}
 		        	},
-		        	dni : {
-		        		selector: "#id_act_dni",
+		        	ruc : {
+		        		selector: "#id_act_ruc",
 		        		validators : {
 		        			notEmpty: {
-		                        message: 'El dni es requerido'
+		                        message: 'El ruc es requerido'
 		                    },
 		                    regexp: {
 		                        regexp: /^[0-9]{8}$/,
-		                        message: 'El dni tiene 8 dígitos'
+		                        message: 'El ruc tiene 8 dígitos'
 		                    },
 		        		}
 		        	},
@@ -447,8 +463,8 @@
 		                    },
 		        		}
 		        	},     
-		        	categoria : {
-		        		selector: "#id_act_categoria",
+		        	pais : {
+		        		selector: "#id_act_pais",
 		        		validators : {
 		        			notEmpty: {
 		                        message: 'La categoría es requerida'
@@ -460,13 +476,13 @@
 		});		
 		
 		function limpiarFormulario(){	
-			$('#id_reg_nombre').val("");
-			$('#id_reg_dni').val("");
-			$('#id_reg_categoria').val(" ");
-			$('#id_act_nombre').val("");
-			$('#id_act_dni').val("");
-			$('#id_act_categoria').val(" ");
-			$('#id_act_estado').val(" ");
+			$('#id_reg_ruc').val("");
+			$('#id_reg_razonsocial').val("");
+			$('#id_reg_direccion').val(" ");
+			$('#id_act_telefono').val("");
+			$('#id_act_contacto').val("");
+			$('#id_act_pais').val(" ");
+			//$('#id_act_estado').val(" ");
 		}
 	</script>
 </body>
