@@ -2,6 +2,7 @@ package fabricas;
 
 import dao.AlumnoDAO;
 import dao.AutorDAO;
+import dao.CategoriaLibroDAO;
 import dao.DevolucionDAO;
 import dao.EditorialDAO;
 import dao.GradoDAO;
@@ -42,6 +43,7 @@ public abstract class Fabrica {
 	public abstract SeparacionDAO getSeparacionDAO();
 	public abstract ModalidadDAO getModalidadDAO();
 	public abstract SedeDAO getSedeDAO();
+	public abstract CategoriaLibroDAO getCategoriaLibroDAO();
 	
 	public static Fabrica getFabrica(int tipo){
 		Fabrica salida = null;
