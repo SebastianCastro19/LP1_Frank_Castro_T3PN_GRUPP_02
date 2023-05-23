@@ -1,4 +1,4 @@
-
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <!DOCTYPE html>
 <html lang="esS" >
 <head>
@@ -21,6 +21,7 @@
 <body>
 
 <jsp:include page="intranetCabecera.jsp" />
+
 <div class="container" style="margin-top: 4%">
 
 <h1>Registra Autor</h1>
@@ -168,11 +169,12 @@ $(document).ready(function() {
 	        });
 	    }
 	});
-	$.getJSON("cargaGrado", {}, function (data){
+	
+	$.getJSON("cargaGrado",{}, function (data){
 		$.each(data, function(index, item){
-			$("#id_grado").append("<option value=" +  item.idGrado +" >" +  item.descripcion + "</option>");
-		});	
-	});		
+			$("#id_grado").append("<option value='"+ item.idGrado +"'>"+ item.descripcion+"</option>");
+		})
+	});
 	
 	function limpiarFormulario(){	
 		$('#id_nombre').val('');

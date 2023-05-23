@@ -27,13 +27,10 @@ public abstract class Fabrica {
 	public abstract AlumnoDAO  getAlumnoDAO();
 	public abstract PaisDAO getPaisDAO();
 	public abstract AutorDAO getAutorDAO();
-	//Cambios
 	public abstract GradoDAO getGradoDAO();
-	
 	public abstract EditorialDAO getEditorialDAO();
 	public abstract LibroDAO getLibroDAO();
 	public abstract ProveedorDAO getProveedor();
-	//public abstract TipoDAO getTipo();
 	public abstract RevistaDAO getRevistaDAO();
 	public abstract SalaDAO getSalaDAO();
 	public abstract TesisDAO getTesisDAO();
