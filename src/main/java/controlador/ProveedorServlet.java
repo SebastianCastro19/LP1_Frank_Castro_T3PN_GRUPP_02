@@ -36,9 +36,7 @@ public class ProveedorServlet extends HttpServlet {
 			objPais.setIdPais(Integer.parseInt(vpais));
 			
 			Proveedor objProveedor = new Proveedor();
-			//objProveedor.setNombre(vnombre);
-			//objProveedor.setDni(vdni);			
-			//objProveedor.setTipo(objTipo);
+	
 			objProveedor.setRazonsocial(vrazonsocial);
 			objProveedor.setRuc(vruc);
 			objProveedor.setDireccion(vdireccion);			

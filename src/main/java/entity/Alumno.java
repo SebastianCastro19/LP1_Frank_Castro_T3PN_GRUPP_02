@@ -9,8 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Alumno {
-  
-
 	private int idAlumno;
 	private String nombres;
 	private String apellidos;
@@ -21,7 +19,5 @@ public class Alumno {
 	private Timestamp fechaRegistro;
 	private int estado;
 	private Pais pais;
-	
-
-   
+	private String formateadoFechaNacimiento;
 }
