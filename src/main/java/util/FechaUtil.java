@@ -6,12 +6,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class FechaUtil {
-
-	public static String getFechaFormateadaYYYYMMdd(java.sql.Date fecha) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); //Brinda formato a la fecha
-		return sdf.format(fecha);
-	}
 	
+	public static String getFechaddMMyyyy(Date fecha) {
+		SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd");
+		return sdf.format(fecha);
+
+	}
+
 	public static Date toFecha(String fecha) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date fec = null;
@@ -113,5 +114,4 @@ public class FechaUtil {
 	}
 	
 }
-
 
