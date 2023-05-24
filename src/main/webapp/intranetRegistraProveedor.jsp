@@ -24,24 +24,24 @@
 			<input type="hidden" name="metodo" value="registra">	
 
 			<div class="form-group">
-				<label class="control-label" for="id_razonsocial">Razon Social de la Empresa</label>
-				<input class="form-control" type="text" id="id_razonsocial" name="razonsocial" placeholder="Ingrese la razon social" maxlength="100">
+				<label class="control-label" for="id_razonsocial">Razón Social de la Empresa</label>
+				<input class="form-control" type="text" id="id_razonsocial" name="razonsocial" placeholder="Ingrese la razon social" maxlength="30">
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="id_ruc">RUC de la empresa</label>
 				<input class="form-control" type="text" id="id_ruc" name="ruc" placeholder="Ingrese el RUC" maxlength="11">
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="id_direccion">Domicilio Fiscal de la Empresa</label>
-				<input class="form-control" type="text" id="id_direccion" name="direccion" placeholder="Ingrese el Domicilio Fiscal de la empresa" maxlength="200">
+				<label class="control-label" for="id_direccion">Dirección de la Empresa</label>
+				<input class="form-control" type="text" id="id_direccion" name="direccion" placeholder="Ingrese el Domicilio Fiscal de la empresa" maxlength="30">
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="id_celular">Telefono de Contacto de la Empresa</label>
+				<label class="control-label" for="id_celular">Teléfono de Contacto de la Empresa</label>
 				<input class="form-control" type="text" id="id_celular" name="celular" placeholder="Ingrese el numero de telefono de contacto" maxlength="9">
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="id_contacto">Nombre de la Persona de Contacto Telefonico</label>
-				<input class="form-control" type="text" id="id_contacto" name="contacto" placeholder="Ingrese el Nombre de la Persona de Contacto Telefonico" maxlength="200">
+				<label class="control-label" for="id_contacto">Nombre de la Persona de Contacto Telefónico</label>
+				<input class="form-control" type="text" id="id_contacto" name="contacto" placeholder="Ingrese el Nombre de la Persona de Contacto Telefonico" maxlength="30">
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="id_pais"> Pais </label> <select
@@ -82,7 +82,12 @@ $(document).ready(function() {
         		selector: "#id_razonsocial",
         		validators : {
         			notEmpty: {
-                        message: 'La razon social de la empresa es requerida'
+                        message: 'La razón social de la empresa es requerida'
+                    },
+                    stringLength: {
+                        min: 3,
+                        max: 30,
+                        message: 'La razón social tiene de 3 a 30 caracteres'
                     },
         		}
         	}, 
@@ -92,13 +97,17 @@ $(document).ready(function() {
         			notEmpty: {
                         message: 'El RUC de la empresa es requerido'
                     },
+                    regexp: {
+                        regexp: /^[0-9]{11}$/,
+                        message: 'El RUC de la empresa tiene 11 dígitos'
+                    },
         		}
         	}, 
         	direccion : {
         		selector: "#id_direccion",
         		validators : {
         			notEmpty: {
-                        message: 'El domicilio fiscal de la empresa es requerido'
+                        message: 'La dirección de la empresa es requerida'
                     },
         		}
         	}, 
@@ -106,7 +115,11 @@ $(document).ready(function() {
         		selector: "#id_celular",
         		validators : {
         			notEmpty: {
-                        message: 'El telefono de contacto es obligatorio'
+                        message: 'El teléfono de contacto es obligatorio'
+                    },
+                    regexp: {
+                        regexp: /^[0-9]{9}$/,
+                        message: 'El dni tiene 9 dígitos'
                     },
         		}
         	},
@@ -116,13 +129,18 @@ $(document).ready(function() {
         			notEmpty: {
                         message: 'El nombre de contacto es obligatorio'
                     },
+                    stringLength: {
+                        min: 3,
+                        max: 30,
+                        message: 'El nombre del contacto tiene de 3 a 30 caracteres'
+                    },
         		}
         	}, 
         	pais : {
         		selector: "#id_pais",
         		validators : {
         			notEmpty: {
-                        message: 'El nombre del pais es obligatorio'
+                        message: 'El nombre del país es obligatorio'
                     },
         		}
         	}, 

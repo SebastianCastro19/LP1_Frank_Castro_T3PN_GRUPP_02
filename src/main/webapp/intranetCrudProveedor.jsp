@@ -429,29 +429,72 @@
 				},
 
 				fields : {
-					ruc : {
-						selector : "#id_reg_ruc",
-						validators : {
-							notEmpty : {
-								message : 'El Ruc es requerido'
-							},
-							stringLength : {
-								max : 11,
-								message : 'El nombre tiene hasta 11 caracteres'
-							},
-							regexp : {
-								message : 'Ingresar sólo valores numéricos 0-9'
-							},
-						}
-					},
-					pais : {
-						selector : "#id_reg_pais",
-						validators : {
-							notEmpty : {
-								message : 'El país es requerido'
-							},
-						}
-					},
+					razonsocial : {
+		        		selector: "#id_reg_razonsocial",
+		        		validators : {
+		        			notEmpty: {
+		                        message: 'La razón social de la empresa es requerida'
+		                    },
+		                    stringLength: {
+		                        min: 3,
+		                        max: 30,
+		                        message: 'La razón social tiene de 3 a 30 caracteres'
+		                    },
+		        		}
+		        	}, 
+		        	ruc : {
+		        		selector: "#id_reg_ruc",
+		        		validators : {
+		        			notEmpty: {
+		                        message: 'El RUC de la empresa es requerido'
+		                    },
+		                    regexp: {
+		                        regexp: /^[0-9]{11}$/,
+		                        message: 'El RUC de la empresa tiene 11 dígitos'
+		                    },
+		        		}
+		        	}, 
+		        	direccion : {
+		        		selector: "#id_reg_direccion",
+		        		validators : {
+		        			notEmpty: {
+		                        message: 'La dirección de la empresa es requerida'
+		                    },
+		        		}
+		        	}, 
+		        	celular : {
+		        		selector: "#id_reg_celular",
+		        		validators : {
+		        			notEmpty: {
+		                        message: 'El teléfono de contacto es obligatorio'
+		                    },
+		                    regexp: {
+		                        regexp: /^[0-9]{9}$/,
+		                        message: 'El dni tiene 9 dígitos'
+		                    },
+		        		}
+		        	},
+		        	contacto : {
+		        		selector: "#id_reg_contacto",
+		        		validators : {
+		        			notEmpty: {
+		                        message: 'El nombre de contacto es obligatorio'
+		                    },
+		                    stringLength: {
+		                        min: 3,
+		                        max: 30,
+		                        message: 'El nombre del contacto tiene de 3 a 30 caracteres'
+		                    },
+		        		}
+		        	}, 
+		        	pais : {
+		        		selector: "#id_reg_pais",
+		        		validators : {
+		        			notEmpty: {
+		                        message: 'El nombre del país es obligatorio'
+		                    },
+		        		}
+		        	}, 
 				}
 			});
 		});
@@ -466,43 +509,72 @@
 		        },
 		        
 		        fields:{
-		        	razonsocial : {  
+		        	razonsocial : {
 		        		selector: "#id_act_razonsocial",
 		        		validators : {
 		        			notEmpty: {
-		                        message: 'La Razon Social es requerido'
+		                        message: 'La razón social de la empresa es requerida'
 		                    },
 		                    stringLength: {
 		                        min: 3,
 		                        max: 30,
-		                        message: 'El nombre tiene de 3 a 30 caracteres'
+		                        message: 'La razón social tiene de 3 a 30 caracteres'
 		                    },
 		        		}
-		        	},
+		        	}, 
 		        	ruc : {
 		        		selector: "#id_act_ruc",
 		        		validators : {
 		        			notEmpty: {
-		                        message: 'El Ruc es requerida'
+		                        message: 'El RUC de la empresa es requerido'
+		                    },
+		                    regexp: {
+		                        regexp: /^[0-9]{11}$/,
+		                        message: 'El RUC de la empresa tiene 11 dígitos'
+		                    },
+		        		}
+		        	}, 
+		        	direccion : {
+		        		selector: "#id_act_direccion",
+		        		validators : {
+		        			notEmpty: {
+		                        message: 'La dirección de la empresa es requerida'
+		                    },
+		        		}
+		        	}, 
+		        	celular : {
+		        		selector: "#id_act_celular",
+		        		validators : {
+		        			notEmpty: {
+		                        message: 'El teléfono de contacto es obligatorio'
+		                    },
+		                    regexp: {
+		                        regexp: /^[0-9]{9}$/,
+		                        message: 'El dni tiene 9 dígitos'
 		                    },
 		        		}
 		        	},
-		        	estado : {
-		        		selector: "#id_act_estado",
+		        	contacto : {
+		        		selector: "#id_act_contacto",
 		        		validators : {
 		        			notEmpty: {
-		                        message: 'El estado es requerido'
+		                        message: 'El nombre de contacto es obligatorio'
+		                    },
+		                    stringLength: {
+		                        min: 3,
+		                        max: 30,
+		                        message: 'El nombre del contacto tiene de 3 a 30 caracteres'
 		                    },
 		        		}
-		        	},     
+		        	}, 
 		        	pais : {
 		        		selector: "#id_act_pais",
 		        		validators : {
 		        			notEmpty: {
-		                        message: 'El país es requerido'
+		                        message: 'El nombre del país es obligatorio'
 		                    },
 		        		}
-		        	},       	
+		        	}, 
 		        }
 		    });
 		});
