@@ -54,7 +54,7 @@ public class ProveedorServlet extends HttpServlet {
 
 	private void eliminacionFisica(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		log.info(">>> crudProveedor >>> eliminacionFisica");
-
+//
 		Fabrica fabrica = Fabrica.getFabrica(Fabrica.MYSQL);
 		ProveedorDAO dao = fabrica.getProveedorDAO();
 
