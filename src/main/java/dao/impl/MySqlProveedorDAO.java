@@ -14,28 +14,29 @@ import util.MySqlDBConexion;
 
 public class MySqlProveedorDAO implements ProveedorDAO {
 
-
 	private static Logger log = Logger.getLogger(MySqlProveedorDAO.class.getName());
-	
-	public int insertaProveedor(Proveedor  obj) {
+
+	public int insertaProveedor(Proveedor obj) {
 		int salida = -1;
-		
+
 		Connection conn = null;
 		PreparedStatement pstm = null;
+
 		try {
 			conn = MySqlDBConexion.getConexion();
-			
-			String sql = "insert into proveedor values(null,?,?,?,?,?,?,?,?)";
+
+			String sql = " insert into proveedor values(null,?,?,?,?,?,?,?,?)";
+					
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, obj.getRazonsocial());
 			pstm.setString(2, obj.getRuc());
 			pstm.setString(3, obj.getDireccion());
 			pstm.setString(4, obj.getCelular());
 			pstm.setString(5, obj.getContacto());
-			pstm.setInt(6,obj.getEstado());
-			pstm.setDate(7, obj.getFechaRegistro());
+			pstm.setInt(6, obj.getEstado());
+			pstm.setTimestamp(7, obj.getFechaRegistro());
 			pstm.setInt(8, obj.getPais().getIdPais());
-			
+
 			log.info(">>>> " + pstm);
 
 			salida = pstm.executeUpdate();
@@ -43,112 +44,94 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (pstm != null) pstm.close();
-				if (conn != null) conn.close();
-			} catch (Exception e2) {}
+				if (pstm != null)
+					pstm.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
+
 		}
-		
+
 		return salida;
+
 	}
 
 	@Override
 	public List<Proveedor> listaProveedor(String filtro) {
 		List<Proveedor> lista = new ArrayList<Proveedor>();
-		Connection conn = null;
-		PreparedStatement pstm = null;
-		ResultSet rs = null;
-		try {
-			conn = MySqlDBConexion.getConexion();
-			
-			String sql = "select prov.* from sistema_biblioteca_202301.proveedor prov where prov.razonsocial =? ";
-			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, filtro);
-			
-			log.info(">>>> " + pstm);
+			Connection conn = null;
+			PreparedStatement pstm = null;
+			ResultSet rs = null;
+			try {
+				conn = MySqlDBConexion.getConexion();
 
-			rs = pstm.executeQuery();
-			Proveedor objProveedor = null;
-			Pais objPais = null;
-			while(rs.next()) {
-				
-				objProveedor = new Proveedor();
-				objProveedor.setRazonsocial(rs.getString(1));
-				objProveedor.setRuc(rs.getString(2));
-				objProveedor.setDireccion(rs.getString(3));
-				objProveedor.setCelular(rs.getString(4));
-				objProveedor.setContacto(rs.getString(5));
-				objProveedor.setEstado(rs.getInt(5));
-				objProveedor.setFechaRegistro(rs.getDate(6));
-				
-				
-				objPais = new Pais();
-				objPais.setIdPais(rs.getInt(7));
-				
-				
-				
-				objProveedor.setPais(objPais);				
-				lista.add(objProveedor);
+				String sql = "SELECT p.*, pa.nombre FROM proveedor p " + "inner join pais pa on p.idPais = pa.idPais "
+						+ "where p.razonSocial like ?";
+				pstm = conn.prepareStatement(sql);
+				pstm.setString(1, filtro);
+
+				log.info(">>>> " + pstm);
+
+				rs = pstm.executeQuery();
+				Proveedor objProveedor = null;
+				Pais objPais = null;
+				while (rs.next()) {
+					objProveedor = new Proveedor();
+					objProveedor.setIdProveedor(rs.getInt(1));
+					objProveedor.setRazonsocial(rs.getString(2));
+					objProveedor.setRuc(rs.getString(3));
+					objProveedor.setDireccion(rs.getString(4));
+					objProveedor.setCelular(rs.getString(5));
+					objProveedor.setContacto(rs.getString(6));
+					objProveedor.setEstado(rs.getInt(7));
+					objProveedor.setFechaRegistro(rs.getTimestamp(8));
+
+					objPais = new Pais();
+					objPais.setIdPais(rs.getInt(9));
+					objPais.setNombre(rs.getString(10));
+					objProveedor.setPais(objPais);
+
+					lista.add(objProveedor);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if (pstm != null)
+						pstm.close();
+					if (conn != null)
+						conn.close();
+				} catch (Exception e2) {
+				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstm != null) pstm.close();
-				if (conn != null) conn.close();
-			} catch (Exception e2) {}
-		}
-		
-		return lista;
-	}
 
-	@Override
-	public int eliminaProveedor(String ruc) {
-		int salida = -1;
-		
-		Connection conn = null;
-		PreparedStatement pstm = null;
-		try {
-			conn = MySqlDBConexion.getConexion();
-			
-			String sql = "delete from sistema_biblioteca_202301.proveedor where idProveedor = ?";
-			pstm = conn.prepareStatement(sql);
-			pstm.setString(1,ruc);
-		
-			log.info(">>>> " + pstm);
-
-			salida = pstm.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (pstm != null) pstm.close();
-				if (conn != null) conn.close();
-			} catch (Exception e2) {}
+			return lista;
 		}
-		
-		return salida;
-	}
+	
 
 	@Override
 	public int actualizaProveedor(Proveedor obj) {
 		int salida = -1;
-		
+
 		Connection conn = null;
 		PreparedStatement pstm = null;
+
 		try {
 			conn = MySqlDBConexion.getConexion();
-			
-			String sql = "insert into sistema_biblioteca_202301.proveedor values(null,?,?,?,?,?,?,?,?)";
+
+			String sql = "update proveedor set Razonsocial=?, Ruc=?, Direccion=?, Celular=?, Contacto=?, Estado=?, IdPais=? where idProveedor=?";
+
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, obj.getRazonsocial());
 			pstm.setString(2, obj.getRuc());
 			pstm.setString(3, obj.getDireccion());
 			pstm.setString(4, obj.getCelular());
 			pstm.setString(5, obj.getContacto());
-			pstm.setInt(6,obj.getEstado());
-			pstm.setDate(7, obj.getFechaRegistro());
-			pstm.setInt(8, obj.getPais().getIdPais());
-			
+			pstm.setInt(6, obj.getEstado());
+			pstm.setInt(7, obj.getPais().getIdPais());
+			pstm.setInt(8, obj.getIdProveedor());
+
 			log.info(">>>> " + pstm);
 
 			salida = pstm.executeUpdate();
@@ -156,15 +139,48 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (pstm != null) pstm.close();
-				if (conn != null) conn.close();
-			} catch (Exception e2) {}
+				if (pstm != null)
+					pstm.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
+
 		}
-		
+
+		return salida;
+
+	}
+
+	@Override
+	public int eliminaProveedor(int idProveedor) {
+		int salida = -1;
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		try {
+			conn = MySqlDBConexion.getConexion();
+			String sql = "delete from proveedor where idProveedor = ?";
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, idProveedor);
+
+			log.info(">>>> " + pstm);
+
+			salida = pstm.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null)
+					pstm.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
+		}
 		return salida;
 	}
-	
-	
+
+	@Override
 	public Proveedor buscaProveedor(int idProveedor) {
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -172,37 +188,45 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 		Proveedor objProveedor = null;
 		try {
 			conn = MySqlDBConexion.getConexion();
-			
-			String sql = "select prov.* from proveedor prov where prov.idProveedor =?";
+
+			String sql = "SELECT p.* FROM proveedor as p " + "inner join pais as pa on p.idPais = pa.idPais "
+					+ "where p.idProveedor = ?";
 			pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, idProveedor);
-			
+
 			log.info(">>>> " + pstm);
 
 			rs = pstm.executeQuery();
+
 			Pais objPais = null;
-			while(rs.next()) {
+			while (rs.next()) {
 				objProveedor = new Proveedor();
 				objProveedor.setIdProveedor(rs.getInt(1));
 				objProveedor.setRazonsocial(rs.getString(2));
 				objProveedor.setRuc(rs.getString(3));
-				objProveedor.setDireccion(rs.getString(4));  //rs.getTimestamp(4)
+				objProveedor.setDireccion(rs.getString(4));
 				objProveedor.setCelular(rs.getString(5));
 				objProveedor.setContacto(rs.getString(6));
 				objProveedor.setEstado(rs.getInt(7));
-				
+				objProveedor.setFechaRegistro(rs.getTimestamp(8));
+
 				objPais = new Pais();
-				objPais.setIdPais(rs.getInt(8));
+				objPais.setIdPais(rs.getInt(9));
 				objProveedor.setPais(objPais);
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (pstm != null) pstm.close();
-				if (conn != null) conn.close();
-			} catch (Exception e2) {}
+				if (pstm != null)
+					pstm.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+			}
 		}
+
 		return objProveedor;
 	}
 }
