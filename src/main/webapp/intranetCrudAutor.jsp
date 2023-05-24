@@ -448,6 +448,19 @@
 			    });
 		}
 		
+		function eliminacionLogica(idAutor){
+			 $.ajax({
+		          type: "POST",
+		          url: "crudAutor", 
+		          data: {"metodo":"eLogica", "idAutor":idAutor},
+		          success: function(data){
+		        	  agregarGrilla(data.datos);
+		          },
+		          error: function(){
+		        	  mostrarMensaje(MSG_ERROR);
+		          }
+		    });
+		}
 		
 		function eliminacionFisica(idAutor){	
 			var array = [idAutor];

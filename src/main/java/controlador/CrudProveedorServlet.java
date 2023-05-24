@@ -21,11 +21,11 @@ import entity.Respuesta;
 import fabricas.Fabrica;
 
 @WebServlet("/crudProveedor")
-public class ProveedorServlet extends HttpServlet {
+public class CrudProveedorServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	private static Logger log = Logger.getLogger(ProveedorServlet.class.getName());
+	private static Logger log = Logger.getLogger(CrudProveedorServlet.class.getName());
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

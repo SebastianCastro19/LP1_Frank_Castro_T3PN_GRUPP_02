@@ -21,10 +21,10 @@ import entity.Respuesta;
 import fabricas.Fabrica;
 
 @WebServlet("/crudLibro")
-public class LibroControlador extends HttpServlet{
+public class CrudLibroControlador extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
-	private static Logger log = Logger.getLogger(LibroControlador.class.getName());
+	private static Logger log = Logger.getLogger(CrudLibroControlador.class.getName());
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

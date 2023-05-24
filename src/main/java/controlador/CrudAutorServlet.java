@@ -12,7 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.google.gson.Gson;
+
 import dao.AutorDAO;
 import entity.Autor;
 import entity.Grado;
@@ -163,7 +165,26 @@ public class CrudAutorServlet extends HttpServlet {
 	protected void eliminacionLogica (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		log.info(">>> crudAutor >>> eliminacion logica");
 		
+		Fabrica fabrica = Fabrica.getFabrica(Fabrica.MYSQL);
+		AutorDAO dao = fabrica.getAutorDAO();
+	
+		String idAutor = req.getParameter("idAutor");
 		
+		Autor objAutor = dao.buscaAutor(Integer.parseInt(idAutor));
+		int estadoNuevo = objAutor.getEstado() == 0 ? 1 : 0;
+		objAutor.setEstado(estadoNuevo);
+		
+		dao.actualizaAutor(objAutor);
+		List<Autor> lista = dao.listaAutor("%");
+		
+		Respuesta objRespuesta = new Respuesta();
+		objRespuesta.setDatos(lista);
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(objRespuesta);
+		resp.setContentType("application/json;charset=UTF-8");
+		PrintWriter out = resp.getWriter();
+		out.println(json);
 	}
 	
 	protected void eliminacionFisica (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
