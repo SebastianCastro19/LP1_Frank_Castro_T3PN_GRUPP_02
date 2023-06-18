@@ -11,7 +11,7 @@ public class Autor {
   
     //Declaracion de atributos de la tabla Autor
 	private int idAutor;
-	private String nombres; 
+	private String nombres;
 	private String apellidos;
 	private Date fechaNacimiento;
 	private String telefono;
