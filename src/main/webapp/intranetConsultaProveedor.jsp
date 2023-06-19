@@ -21,19 +21,20 @@
 <link rel="stylesheet" href="css/dataTables.bootstrap.min.css"/>
 <link rel="stylesheet" href="css/bootstrapValidator.css"/>
 
+
+<title>Consulta Proveedor</title>
+</head>
 <div class="container" style="margin-top: 4%">
 </div>
-<title>Lista Proveedor</title>
-</head>
 
 <body>
 <jsp:include page="intranetCabecera.jsp" />
 	<div class="container">
-		<h1>Lista Proveedor</h1>
+		<h1>Consulta Proveedor</h1>
 
 		<div class="row" style="margin-top: 5%">
 			<div class="col-md-4">
-				<label class="control-label">Razon Social</label> 
+				<label class="control-label">Razón Social</label> 
 			</div>	
 			<div class="col-md-5">
 				<input class="form-control" type="text" name="razonsocial" id="id_razonsocial" >
@@ -75,12 +76,12 @@
 				<thead style='background-color:#337ab7; color:white'>
 					<tr>
 						<th>Código</th>
-						<th>Razon Socials</th>
+						<th>Razon Social</th>
 						<th>RUC</th>
 						<th>Fecha Registro</th>
 						<th>Estado</th>
 						<th>País</th>
-						<th></th>
+						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
