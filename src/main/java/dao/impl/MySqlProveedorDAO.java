@@ -12,7 +12,7 @@ import entity.Pais;
 import entity.Proveedor;
 import util.MySqlDBConexion;
 
-public class MySqlProveedorDAO implements ProveedorDAO {
+public  class MySqlProveedorDAO implements ProveedorDAO {
 
 	private static Logger log = Logger.getLogger(MySqlProveedorDAO.class.getName());
 
@@ -66,8 +66,8 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 			try {
 				conn = MySqlDBConexion.getConexion();
 
-				String sql = "SELECT p.*, pa.nombre FROM proveedor p " + "inner join pais pa on p.idPais = pa.idPais "
-						+ "where p.razonSocial like ?";
+				String sql = "SELECT p.*, pa.razonsocial FROM proveedor p " + "inner join pais pa on p.idPais = pa.idPais "
+						+ "where p.razonsocial like ?";
 				pstm = conn.prepareStatement(sql);
 				pstm.setString(1, filtro);
 
@@ -228,5 +228,60 @@ public class MySqlProveedorDAO implements ProveedorDAO {
 		}
 
 		return objProveedor;
+	}
+
+	@Override
+	public List<Proveedor> listaProveedorComplejo(String razonsocial, String ruc, int estado, int idPais){
+		List<Proveedor> lista = new ArrayList<Proveedor>();
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			conn = MySqlDBConexion.getConexion();
+			
+			String sql = "select prov.*, pa.nombre from proveedor prov inner join pais pa on prov.idPais = pa.idPais "
+					+ "where 1=1 "
+					+ "and prov.razonsocial like ? "
+					+ "and (? ='' or prov.ruc = ? ) "
+					+ "and prov.estado = ? "
+					+ "and (? = '-1' or prov.idPais = ?) ";
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, razonsocial);
+			pstm.setString(2, ruc);
+			pstm.setString(3, ruc);
+			pstm.setInt(4, estado);
+			pstm.setInt(5, idPais);
+			pstm.setInt(6, idPais);
+			
+			log.info(">>>> " + pstm);
+
+			rs = pstm.executeQuery();
+			Proveedor objProveedor = null;
+			Pais objPais = null;
+			while(rs.next()) {
+				objProveedor = new Proveedor();
+				objProveedor.setIdProveedor(rs.getInt(1));
+				objProveedor.setRazonsocial(rs.getString(2));
+				objProveedor.setRuc(rs.getString(3));
+				objProveedor.setFechaRegistro(rs.getTimestamp(4));
+				objProveedor.setEstado(rs.getInt(5));
+				
+				objPais = new Pais();
+				objPais.setIdPais(rs.getInt(6));
+				objPais.setNombre(rs.getString(7));
+				objProveedor.setPais(objPais);
+				
+				lista.add(objProveedor);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null) pstm.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+		
+		return lista;
 	}
 }

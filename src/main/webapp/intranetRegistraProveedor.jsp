@@ -109,6 +109,11 @@ $(document).ready(function() {
         			notEmpty: {
                         message: 'La dirección de la empresa es requerida'
                     },
+                    stringLength: {
+                        min: 3,
+                        max: 30,
+                        message: 'La dirección tiene de 3 a 30 caracteres'
+                    },
         		}
         	}, 
         	celular : {
