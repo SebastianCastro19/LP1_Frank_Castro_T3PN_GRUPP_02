@@ -66,7 +66,7 @@ public  class MySqlProveedorDAO implements ProveedorDAO {
 			try {
 				conn = MySqlDBConexion.getConexion();
 
-				String sql = "SELECT p.*, pa.razonsocial FROM proveedor p " + "inner join pais pa on p.idPais = pa.idPais "
+				String sql = "SELECT p.*, p.razonsocial FROM proveedor p " + "inner join pais pa on p.idPais = pa.idPais "
 						+ "where p.razonsocial like ?";
 				pstm = conn.prepareStatement(sql);
 				pstm.setString(1, filtro);
@@ -263,12 +263,12 @@ public  class MySqlProveedorDAO implements ProveedorDAO {
 				objProveedor.setIdProveedor(rs.getInt(1));
 				objProveedor.setRazonsocial(rs.getString(2));
 				objProveedor.setRuc(rs.getString(3));
-				objProveedor.setFechaRegistro(rs.getTimestamp(4));
-				objProveedor.setEstado(rs.getInt(5));
+				objProveedor.setFechaRegistro(rs.getTimestamp(8));
+				objProveedor.setEstado(rs.getInt(7));
 				
 				objPais = new Pais();
-				objPais.setIdPais(rs.getInt(6));
-				objPais.setNombre(rs.getString(7));
+				objPais.setIdPais(rs.getInt(9));
+				objPais.setNombre(rs.getString(10));
 				objProveedor.setPais(objPais);
 				
 				lista.add(objProveedor);
