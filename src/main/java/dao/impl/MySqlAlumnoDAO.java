@@ -264,6 +264,78 @@ public class MySqlAlumnoDAO implements AlumnoDAO {
 		}
 		return objAlumno;
 	}
+	@Override
+	public List<Alumno> listaCompleja(String nombres,String apellidos,String telefono,String dni,String correo, int idPais, int estado, Date fechaInicio, Date fechaFin) {
+		List<Alumno> lista = new ArrayList<Alumno>();
+		Connection conn = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			conn = MySqlDBConexion.getConexion();
+			
+			String sql = "Select e.*, g.nombre From alumno "
+					+ "e inner join pais g on e.idPais = g.idPais "
+					+ "where 1=1 "
+					+ "and e.nombres like ? "
+					+ "and e.apellidos like ? "
+					+ "and (? = '' or e.telefono = ?)"
+					+ "and e.dni like ? "
+					+ "and e.correo like ? "
+					+ "and e.estado = ? "
+					+ "and (? = -1 or e.idPais = ?)"
+		    		+ "and e.fechaNacimiento > ? "
+					+ "and e.fechaNacimiento < ? ";
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, nombres);
+			pstm.setString(2, apellidos);
+			pstm.setString(3, telefono);
+			pstm.setString(4, telefono);
+			pstm.setString(5, dni);
+			pstm.setString(6, correo);
+			pstm.setInt(7, estado);
+			pstm.setInt(8, idPais);
+			pstm.setInt(9, idPais);
+			pstm.setDate(10, fechaInicio);
+			pstm.setDate(11, fechaFin);
+			
+			log.info(">>>> " + pstm);
+
+			rs = pstm.executeQuery();
+			Alumno objAlumno = null;
+			Pais objPais = null;
+			while(rs.next()) {
+				objAlumno = new Alumno();
+				objAlumno.setIdAlumno(rs.getInt(1));
+				objAlumno.setNombres(rs.getString(2));
+				objAlumno.setApellidos(rs.getString(3));
+				objAlumno.setTelefono(rs.getString(4));
+				objAlumno.setDni(rs.getString(5));
+				objAlumno.setCorreo(rs.getString(6));
+				objAlumno.setFechaRegistro(rs.getTimestamp(7));
+				objAlumno.setEstado(rs.getInt(8));
+				objAlumno.setFechaNacimiento(rs.getDate(9));
+				
+				objAlumno.setFormateadoFechaNacimiento(FechaUtil.getFechaFormateadaYYYYMMdd(rs.getDate(9)));
+				
+				objPais = new Pais();
+				objPais.setIdPais(rs.getInt(10));
+				objPais.setNombre(rs.getString(11));
+				objAlumno.setPais(objPais);
+				
+				lista.add(objAlumno);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstm != null) pstm.close();
+				if (conn != null) conn.close();
+			} catch (Exception e2) {}
+		}
+		
+		return lista;
+	}
+
 
 
 	
