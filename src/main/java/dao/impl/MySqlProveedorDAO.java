@@ -242,7 +242,7 @@ public  class MySqlProveedorDAO implements ProveedorDAO {
 			String sql = "select prov.*, pa.nombre from proveedor prov inner join pais pa on prov.idPais = pa.idPais "
 					+ "where 1=1 "
 					+ "and prov.razonsocial like ? "
-					+ "and (? ='' or prov.ruc = ? ) "
+					+ "and (? ='' or prov.ruc like ?) "
 					+ "and prov.estado = ? "
 					+ "and (? = '-1' or prov.idPais = ?) ";
 			pstm = conn.prepareStatement(sql);

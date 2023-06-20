@@ -34,10 +34,9 @@ public class ListaProveedorComplejoServlet extends HttpServlet{
 		String vpais = req.getParameter("pais");	
 
 		
-		List<Proveedor> lista = dao.listaProveedorComplejo(vrazonsocial+"%", 
-													   vruc,
-													   Integer.parseInt(vestado), 
-													   Integer.parseInt(vpais));	
+		List<Proveedor> lista = dao.listaProveedorComplejo(vrazonsocial + "%", vruc + "%",
+				   Integer.parseInt(vestado), 
+				   Integer.parseInt(vpais));	
 		
 		//2 Convertir las paises en formato JSON
 		Gson gson = new Gson();
