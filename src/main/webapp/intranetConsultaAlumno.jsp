@@ -144,13 +144,13 @@
 			                   			<input type="hidden" name="metodo" value="actualiza">
 			                   			<input type="hidden" name="idAlumno" id="idAlumno" >
 			                   			<div class="panel-body">
-			                                <div class="form-group" >
+			                                <div class="form-group">
 		                                        <label class="col-lg-3 control-label" for="id_act_nombre">Nombres</label>
 		                                        <div class="col-lg-8">
 													<input class="form-control" id="id_act_nombre" type="text" readonly="readonly" />
 		                                        </div>
 		                                    </div> 	
-		                                    <div class="form-group" >
+		                                    <div class="form-group">
 		                                        <label class="col-lg-3 control-label" for="id_act_apellido">Apellidos</label>
 		                                        <div class="col-lg-8">
 													<input class="form-control" id="id_act_apellido" type="text" readonly="readonly" />
@@ -168,7 +168,7 @@
 													<input class="form-control" id="id_act_dni" name="dni" type="text" readonly="readonly" maxlength="8"/>
 		                                        </div>
 		                                    </div>
-		                                    <div class="form-group" >
+		                                    <div class="form-group">
 		                                        <label class="col-lg-3 control-label" for="id_act_correo">Correo</label>
 		                                        <div class="col-lg-8">
 													<input class="form-control" id="id_act_correo" type="text" readonly="readonly" />
@@ -248,7 +248,12 @@
 			console.log("Fecha Inicio :"  + vfechaInicio);
 			console.log("Fecha Fin :"  + vfechaFin);
 			
-			$.getJSON("listaAlumnoComplejo", {"estado": vestado,"pais":vpais,"nombre":vnombre,"apellido":vapellido,"telefono":vtelefono,"dni":vdni,"correo":vcorreo,"fechaInicio":vfechaInicio,"fechaFin":vfechaFin}, function(data) {
+			if (valFechaInicioMayFechaFin("#id_fecha_inicio", "#id_fecha_fin")){
+				mostrarMensaje("La fecha fin es super a la fecha inicio");
+				return;
+			}
+			
+			$.getJSON("listaAlumnoComplejo", {"estado": vestado,"pais":vpais,"nombres":vnombre,"apellidos":vapellido,"telefono":vtelefono,"dni":vdni,"correo":vcorreo,"fechaInicio":vfechaInicio,"fechaFin":vfechaFin}, function(data) {
 				agregarGrilla(data);
 			});
 		});
@@ -282,28 +287,38 @@
 						},className:'text-center'},
 						{data: "formateadoFechaNacimiento",className:'text-center'},
 						{data: function (row,type,val,meta){
-							return '<button type="button" class="btn btn-info btn-sm" onClick="verFormulario(\'' + row.nombres +'\',\''+ row.apellidos +'\',\''+ row.telefono +'\',\''+ row.dni +'\',\''+ row.correo +'\',\''+ row.formateadoFechaNacimiento +'\',\''+ row.estado +'\',\''+ row.pais.idPais + '\');">Ver</button>';
+							return '<button type="button" class="btn btn-info btn-sm" onClick="verFormulario(\'' + row.nombres +'\',\''+ row.apellidos +'\',\''+ row.telefono +'\',\''+ row.dni +'\',\''+ row.correo +'\',\''+ row.formateadoFechaNacimiento +'\',\''+ row.estado +'\',\''+ row.pais.nombre + '\');">Ver</button>';
 						},className:'text-center'},
 					]                                     
 			    });
 		}
 		
 		
-		//Para visualizar formulario (No funciona)
-		function verFormulario(nombre,apellido,telefono,dni,correo,pais,estado,fechaNacimiento){
-			$("#id_act_nombre").val(nombre);
-			$("#id_act_apellido").val(apellido);
+		function verFormulario(nombres,apellidos,telefono,dni,correo,pais,estado,fechaNacimiento){
+			$("#id_act_nombre").val(nombres);
+			$("#id_act_apellido").val(apellidos);
 			$("#id_act_telefono").val(telefono);
 			$("#id_act_dni").val(dni);
 			$("#id_act_correo").val(correo);
 			$("#id_act_pais").val(pais);
-			$("#id_act_estado").val(estado);
-			$("#id_act_fechaNacimiento").val(fechaNacimiento);
+			$("#id_act_estado").val(estado);  
+			$("#id_act_fechaNacimiento").val(fechaNacimiento); 
 			$("#id_div_modal_ver").modal("show");
 		}
 		
-		
-		
+		function valFechaInicioMayFechaFin(idIni, idFin){
+		    var fIni = $.trim($(idIni).val());
+		    var fFin = $.trim($(idFin).val());
+		    
+		    var dIni = new Date(fIni);
+		    var dFin = new Date(fFin);
+		    
+		    if (dIni > dFin){
+		        return true;
+		    }else{
+		        return false;
+		    }
+		}
 	</script>
 
 </body>

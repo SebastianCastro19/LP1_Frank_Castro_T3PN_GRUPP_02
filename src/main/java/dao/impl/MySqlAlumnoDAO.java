@@ -282,16 +282,16 @@ public class MySqlAlumnoDAO implements AlumnoDAO {
 					+ "and e.dni like ? "
 					+ "and e.correo like ? "
 					+ "and e.estado = ? "
-					+ "and (? = -1 or e.idPais = ?)"
+					+ "and ( ? = -1 or e.idPais = ? )"
 		    		+ "and e.fechaNacimiento > ? "
 					+ "and e.fechaNacimiento < ? ";
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, nombres);
-			pstm.setString(2, apellidos);
+			pstm.setString(1,"%" + nombres + "%");
+			pstm.setString(2,"%" + apellidos + "%");
 			pstm.setString(3, telefono);
 			pstm.setString(4, telefono);
-			pstm.setString(5, dni);
-			pstm.setString(6, correo);
+			pstm.setString(5,"%" + dni + "%");
+			pstm.setString(6,"%" + correo + "%");
 			pstm.setInt(7, estado);
 			pstm.setInt(8, idPais);
 			pstm.setInt(9, idPais);
@@ -312,10 +312,10 @@ public class MySqlAlumnoDAO implements AlumnoDAO {
 				objAlumno.setDni(rs.getString(5));
 				objAlumno.setCorreo(rs.getString(6));
 				objAlumno.setFechaRegistro(rs.getTimestamp(7));
-				objAlumno.setEstado(rs.getInt(8));
-				objAlumno.setFechaNacimiento(rs.getDate(9));
+				objAlumno.setEstado(rs.getInt(9));
+				objAlumno.setFechaNacimiento(rs.getDate(8));
 				
-				objAlumno.setFormateadoFechaNacimiento(FechaUtil.getFechaFormateadaYYYYMMdd(rs.getDate(9)));
+				objAlumno.setFormateadoFechaNacimiento(FechaUtil.getFechaFormateadaYYYYMMdd(rs.getDate(8)));
 				
 				objPais = new Pais();
 				objPais.setIdPais(rs.getInt(10));
