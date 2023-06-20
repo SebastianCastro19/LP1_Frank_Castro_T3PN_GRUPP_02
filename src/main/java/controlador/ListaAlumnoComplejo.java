@@ -32,9 +32,7 @@ public class ListaAlumnoComplejo extends HttpServlet {
 	
 		String vnombre = req.getParameter("nombres");
 		String vapellido = req.getParameter("apellidos");
-		String vtelefono = req.getParameter("telefono");
 		String vdni = req.getParameter("dni");
-		String vcorreo = req.getParameter("correo");
 		String vpais = req.getParameter("pais");	
 		String vestado = req.getParameter("estado");
 		String vfechaInicio = req.getParameter("fechaInicio");
@@ -47,11 +45,9 @@ public class ListaAlumnoComplejo extends HttpServlet {
 		if (vfechaFin.equals("")) { vfechaFin = "2999-12-31"; }
 		
 		
-		List<Alumno> lista = dao.listaCompleja(vnombre + "%",
+		List<Alumno> lista = dao.listaAlumnoComplejo(vnombre + "%",
 												vapellido + "%",
-												vtelefono,
-												vdni,
-												vcorreo,
+												vdni + "%",
 												Integer.parseInt(vpais),
 												Integer.parseInt(vestado),
 												Date.valueOf(vfechaInicio),

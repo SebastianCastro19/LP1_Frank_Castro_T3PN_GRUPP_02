@@ -42,30 +42,14 @@
 			</div>	
 			<div class="col-md-5">
 				<input class="form-control" type="text" name="apellido" id="id_apellido" >
-			</div>			
+			</div>				
 		</div>
 		<div class="row" style="margin-top: 2%">
-			<div class="col-md-4">
-				<label class="control-label">Telefono</label> 
-			</div>	
-			<div class="col-md-5">
-				<input class="form-control" type="text" name="telefono" id="id_telefono" maxlength="9" >
-			</div>			
-		</div>
-				<div class="row" style="margin-top: 2%">
 			<div class="col-md-4">
 				<label class="control-label">DNI</label> 
 			</div>	
 			<div class="col-md-5">
 				<input class="form-control" type="text" name="dni" id="id_dni" maxlength="8" >
-			</div>			
-		</div>
-		<div class="row" style="margin-top: 2%">
-			<div class="col-md-4">
-				<label class="control-label">Correo</label> 
-			</div>	
-			<div class="col-md-5">
-				<input class="form-control" type="text" name="correo" id="id_correo" >
 			</div>			
 		</div>
 		<div class="row" style="margin-top: 2%">
@@ -178,7 +162,7 @@
 		                                        <label class="col-lg-3 control-label" for="id_act_pais">País</label>
 		                                        <div class="col-lg-8">
 													<select class="form-control" id="id_act_pais" name="pais" disabled="disabled">
-														<option value=" ">[Seleccione]</option>
+														<option value="-1">[Seleccione]</option>
 													</select>
 		                                        </div>
 		                                    </div>
@@ -230,9 +214,7 @@
 		$("#id_btn_filtro").click(function() {
 			var vnombre = $("#id_nombre").val();
 			var vapellido = $("#id_apellido").val();
-			var vtelefono = $("#id_telefono").val();
 			var vdni = $("#id_dni").val();
-			var vcorreo = $("#id_correo").val();
 			var vpais = $("#id_pais").val();
 			var vestado = $("#id_estado").is(":checked") ? "1": "0";
 			var vfechaInicio = $("#id_fecha_inicio").val();
@@ -240,20 +222,13 @@
 			
 			console.log("Nombre : "  + vnombre);
 			console.log("Apellido : "  + vapellido);
-			console.log("Telefono : "  + vtelefono);
 			console.log("DNI : "  + vdni);
-			console.log("Correo : "  + vcorreo);
 			console.log("Pais :"   + vpais);
 			console.log("Estado :"  + vestado);
 			console.log("Fecha Inicio :"  + vfechaInicio);
 			console.log("Fecha Fin :"  + vfechaFin);
 			
-			if (valFechaInicioMayFechaFin("#id_fecha_inicio", "#id_fecha_fin")){
-				mostrarMensaje("La fecha fin es super a la fecha inicio");
-				return;
-			}
-			
-			$.getJSON("listaAlumnoComplejo", {"estado": vestado,"pais":vpais,"nombres":vnombre,"apellidos":vapellido,"telefono":vtelefono,"dni":vdni,"correo":vcorreo,"fechaInicio":vfechaInicio,"fechaFin":vfechaFin}, function(data) {
+			$.getJSON("listaAlumnoComplejo", {"estado": vestado,"pais":vpais,"nombres":vnombre,"apellidos":vapellido,"dni":vdni,"fechaInicio":vfechaInicio,"fechaFin":vfechaFin}, function(data) {
 				agregarGrilla(data);
 			});
 		});
@@ -287,37 +262,23 @@
 						},className:'text-center'},
 						{data: "formateadoFechaNacimiento",className:'text-center'},
 						{data: function (row,type,val,meta){
-							return '<button type="button" class="btn btn-info btn-sm" onClick="verFormulario(\'' + row.nombres +'\',\''+ row.apellidos +'\',\''+ row.telefono +'\',\''+ row.dni +'\',\''+ row.correo +'\',\''+ row.formateadoFechaNacimiento +'\',\''+ row.estado +'\',\''+ row.pais.nombre + '\');">Ver</button>';
+							return '<button type="button" class="btn btn-info btn-sm" onClick="verFormulario(\'' + row.nombres +'\',\''+ row.apellidos +'\',\''+ row.telefono +'\',\''+ row.dni +'\',\''+ row.correo +'\',\''+ row.formateadoFechaNacimiento +'\',\''+ row.estado +'\',\''+ row.pais.idPais + '\');">Ver</button>';
 						},className:'text-center'},
 					]                                     
 			    });
 		}
 		
 		
-		function verFormulario(nombres,apellidos,telefono,dni,correo,pais,estado,fechaNacimiento){
+		function verFormulario(nombres,apellidos,telefono,dni,correo,fechaNacimiento,estado,pais){
 			$("#id_act_nombre").val(nombres);
 			$("#id_act_apellido").val(apellidos);
 			$("#id_act_telefono").val(telefono);
 			$("#id_act_dni").val(dni);
 			$("#id_act_correo").val(correo);
+			$("#id_act_fechaNacimiento").val(fechaNacimiento);
+			$("#id_act_estado").val(estado);   
 			$("#id_act_pais").val(pais);
-			$("#id_act_estado").val(estado);  
-			$("#id_act_fechaNacimiento").val(fechaNacimiento); 
 			$("#id_div_modal_ver").modal("show");
-		}
-		
-		function valFechaInicioMayFechaFin(idIni, idFin){
-		    var fIni = $.trim($(idIni).val());
-		    var fFin = $.trim($(idFin).val());
-		    
-		    var dIni = new Date(fIni);
-		    var dFin = new Date(fFin);
-		    
-		    if (dIni > dFin){
-		        return true;
-		    }else{
-		        return false;
-		    }
 		}
 	</script>
 

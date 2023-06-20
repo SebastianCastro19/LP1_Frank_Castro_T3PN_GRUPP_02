@@ -264,8 +264,10 @@ public class MySqlAlumnoDAO implements AlumnoDAO {
 		}
 		return objAlumno;
 	}
+
+
 	@Override
-	public List<Alumno> listaCompleja(String nombres,String apellidos,String telefono,String dni,String correo, int idPais, int estado, Date fechaInicio, Date fechaFin) {
+	public List<Alumno> listaAlumnoComplejo(String nombres, String apellidos, String dni, int idpais, int estado, Date fecInicio, Date fecFin) {
 		List<Alumno> lista = new ArrayList<Alumno>();
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -273,35 +275,30 @@ public class MySqlAlumnoDAO implements AlumnoDAO {
 		try {
 			conn = MySqlDBConexion.getConexion();
 			
-			String sql = "Select e.*, g.nombre From alumno "
-					+ "e inner join pais g on e.idPais = g.idPais "
+			String sql = "SELECT al.*, pa.nombre FROM alumno al "
+					+ "inner join pais pa on al.idPais = pa.idPais "
 					+ "where 1=1 "
-					+ "and e.nombres like ? "
-					+ "and e.apellidos like ? "
-					+ "and (? = '' or e.telefono = ?)"
-					+ "and e.dni like ? "
-					+ "and e.correo like ? "
-					+ "and e.estado = ? "
-					+ "and ( ? = -1 or e.idPais = ? )"
-		    		+ "and e.fechaNacimiento > ? "
-					+ "and e.fechaNacimiento < ? ";
+					+ "and al.nombres like ? "
+					+ "and al.apellidos like ? "
+					+ "and al.dni like ? "
+					+ "and al.fechaNacimiento > ? "
+					+ "and al.fechaNacimiento < ? "
+					+ "and al.estado = ? "
+					+ "and (? = -1 or al.idpais = ? ) ";
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1,"%" + nombres + "%");
-			pstm.setString(2,"%" + apellidos + "%");
-			pstm.setString(3, telefono);
-			pstm.setString(4, telefono);
-			pstm.setString(5,"%" + dni + "%");
-			pstm.setString(6,"%" + correo + "%");
-			pstm.setInt(7, estado);
-			pstm.setInt(8, idPais);
-			pstm.setInt(9, idPais);
-			pstm.setDate(10, fechaInicio);
-			pstm.setDate(11, fechaFin);
+			pstm.setString(1, nombres);
+			pstm.setString(2, apellidos);
+			pstm.setString(3, dni);
+			pstm.setDate(4, fecInicio);
+			pstm.setDate(5, fecFin);
+			pstm.setInt(6, estado);
+			pstm.setInt(7, idpais);
+			pstm.setInt(8, idpais);
 			
 			log.info(">>>> " + pstm);
 
 			rs = pstm.executeQuery();
-			Alumno objAlumno = null;
+			Alumno objAlumno= null;
 			Pais objPais = null;
 			while(rs.next()) {
 				objAlumno = new Alumno();
@@ -311,11 +308,12 @@ public class MySqlAlumnoDAO implements AlumnoDAO {
 				objAlumno.setTelefono(rs.getString(4));
 				objAlumno.setDni(rs.getString(5));
 				objAlumno.setCorreo(rs.getString(6));
-				objAlumno.setFechaRegistro(rs.getTimestamp(7));
+				objAlumno.setFechaNacimiento(rs.getDate(7));
+				objAlumno.setFechaRegistro(rs.getTimestamp(8));
 				objAlumno.setEstado(rs.getInt(9));
-				objAlumno.setFechaNacimiento(rs.getDate(8));
+
+				objAlumno.setFormateadoFechaNacimiento(FechaUtil.getFechaFormateadaYYYYMMdd(rs.getDate(7)));
 				
-				objAlumno.setFormateadoFechaNacimiento(FechaUtil.getFechaFormateadaYYYYMMdd(rs.getDate(8)));
 				
 				objPais = new Pais();
 				objPais.setIdPais(rs.getInt(10));
@@ -335,8 +333,4 @@ public class MySqlAlumnoDAO implements AlumnoDAO {
 		
 		return lista;
 	}
-
-
-
-	
 }

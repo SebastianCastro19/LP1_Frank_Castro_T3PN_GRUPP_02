@@ -14,6 +14,6 @@ public interface AlumnoDAO {
 	public abstract int actualizarAlumno(Alumno obj);
 	public abstract int eliminarAlumno(int idAlumno);
 	public abstract Alumno buscaAlumno(int idAlumno); 
-	public abstract List<Alumno> listaCompleja(String nombre,String apellido,String telefono,String dni,String correo, int idPais, int estado, Date fechaInicio, Date fechaFin);
+	public abstract List<Alumno> listaAlumnoComplejo(String nombres, String apellidos, String dni, int idpais, int estado, Date fecInicio, Date fecFin);
 }
 
