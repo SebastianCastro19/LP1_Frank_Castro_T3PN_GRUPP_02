@@ -26,8 +26,8 @@ public class AlumnoControlador extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			
-			String vnombre = req.getParameter("nombre");
-			String vapellido = req.getParameter("apellido");
+			String vnombre = req.getParameter("nombres");
+			String vapellido = req.getParameter("apellidos");
 			String vtelefono = req.getParameter("telefono");
 			String vdni = req.getParameter("dni");
 			String vcorreo = req.getParameter("correo");
