@@ -48,11 +48,11 @@
 			<table id="id_table" class="table table-bordered table-hover table-condensed" >
 				<thead style='background-color:#337ab7; color:white'>
 					<tr>
-						<th>Codigo</th>
+						<th>Código</th>
 						<th>Nombres</th>
 						<th>Apellidos</th>
 						<th>Fec Nacimiento</th>
-						<th>Telefono</th>
+						<th>Teléfono</th>
 						<th>Grado</th>
 						<th>Estado</th>
 						<th></th>
@@ -106,7 +106,7 @@
 		                                    </div> 	
 		                                    
 		                                    <div class="form-group" >
-		                                        <label class="col-lg-3 control-label" for="id_reg_telefono">Telefono</label>
+		                                        <label class="col-lg-3 control-label" for="id_reg_telefono">Teléfono</label>
 		                                        <div class="col-lg-8">
 													<input class="form-control" id="id_reg_telefono" name="telefono" placeholder="Ingrese el Telefono" type="text" maxlength="9"/>
 		                                        </div>
@@ -176,7 +176,7 @@
 		                                    </div> 	 
 		                                    
 		                                    <div class="form-group" >
-		                                        <label class="col-lg-3 control-label" for="id_act_telefono">Telefono</label>
+		                                        <label class="col-lg-3 control-label" for="id_act_telefono">Teléfono</label>
 		                                        <div class="col-lg-8">
 													<input class="form-control" id="id_act_telefono" name="telefono" placeholder="Ingrese el Telefono" type="text" maxlength="9"/>
 		                                        </div>

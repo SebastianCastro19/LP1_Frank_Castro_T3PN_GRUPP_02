@@ -46,7 +46,7 @@
 		</div>
 		<div class="row" style="margin-top: 2%">
 			<div class="col-md-4">
-				<label class="control-label">Telefono</label> 
+				<label class="control-label">Teléfono</label> 
 			</div>	
 			<div class="col-md-5">
 				<input class="form-control" type="text" name="telefono" id="id_telefono" maxlength="9" >
@@ -92,11 +92,11 @@
 			<table id="id_table" class="table table-bordered table-hover table-condensed" >
 				<thead style='background-color:#337ab7; color:white'>
 					<tr>
-						<th>Codigo</th>
+						<th>Código</th>
 						<th>Nombres</th>
 						<th>Apellidos</th>
 						<th>Fec Nacimiento</th>
-						<th>Telefono</th>
+						<th>Teléfono</th>
 						<th>Grado</th>
 						<th>Estado</th>
 						<th></th>
@@ -145,7 +145,7 @@
 		                                        </div>
 		                                    </div> 
 		                                    <div class="form-group">
-		                                        <label class="col-lg-3 control-label" for="id_act_telefono">Telefono</label>
+		                                        <label class="col-lg-3 control-label" for="id_act_telefono">Teléfono</label>
 		                                        <div class="col-lg-8">
 													<input class="form-control" id="id_act_telefono" name="telefono" type="text" readonly="readonly" maxlength="9"/>
 		                                        </div>
