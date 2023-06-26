@@ -53,7 +53,7 @@ public class MySqlUsuarioDAO implements UsuarioDAO {
 	}
 
 	@Override
-	public List<Opcion> traerEnlacesDeUsuario(int idUsuario)	throws Exception {
+	public List<Opcion> traerEnlacesDeUsuario(int idUsuario) throws Exception {
 		Connection conn= null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;

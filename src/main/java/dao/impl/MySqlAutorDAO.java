@@ -25,8 +25,7 @@ private static Logger log = Logger.getLogger(MySqlAutorDAO.class.getName());
 		try {
 			conn = MySqlDBConexion.getConexion();
 			
-			String sql = "insert into autor values(null,?,?,?,?,?,?,?)";
-			
+			String sql = "insert into autor values(?,?,?,?,?,?,?)";
 			pstm = conn.prepareStatement(sql);
 			pstm.setString(1, obj.getNombres());
 			pstm.setString(2, obj.getApellidos());
